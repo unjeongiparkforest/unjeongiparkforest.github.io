@@ -15,43 +15,45 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
         "Noto Sans KR", "Malgun Gothic", sans-serif;
-      background: #f4f5f7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      color: #222;
+      background: #f4f5f7; min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 24px; color: #222;
     }
-    .banner {
-      display: block;
-      max-width: 520px;
-      width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-      transition: transform .12s ease, box-shadow .15s ease;
-      line-height: 0;
-    }
-    .banner:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18); }
+    .banner { display:block; max-width:520px; width:100%; border-radius:16px; overflow:hidden;
+      box-shadow:0 6px 24px rgba(0,0,0,.12); transition:transform .12s ease, box-shadow .15s ease; line-height:0; }
+    .banner:hover { transform: translateY(-2px); box-shadow:0 10px 32px rgba(0,0,0,.18); }
     .banner:active { transform: translateY(0); }
-    .banner img { width: 100%; height: auto; display: block; }
-    .hint { margin-top: 18px; font-size: 15px; color: #555; text-align: center; }
-    .hint a { color: #2f6fed; text-decoration: none; }
-    .hint a:hover { text-decoration: underline; }
+    .banner img { width:100%; height:auto; display:block; }
+    .status-link {
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      max-width:520px; width:100%; margin-top:18px; padding:16px 20px;
+      background:#fff; border-radius:12px; text-decoration:none; color:#222;
+      box-shadow:0 2px 10px rgba(0,0,0,.07); transition:transform .12s ease, box-shadow .15s ease;
+    }
+    .status-link:hover { transform: translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.12); }
+    .status-link .label { font-size:15px; font-weight:600; }
+    .status-link .desc { margin-top:3px; font-size:13px; color:#666; }
+    .status-link .rate { font-size:19px; font-weight:700; color:#2f6fed; white-space:nowrap; }
+    .hint { margin-top:18px; font-size:15px; color:#555; text-align:center; }
+    .hint a { color:#2f6fed; text-decoration:none; }
+    .hint a:hover { text-decoration:underline; }
   </style>
 </head>
 <body>
-  <!-- 배너 이미지를 누르면 위임장 작성 화면으로 이동합니다.
-       banner.png 를 실제 배너 이미지 파일 이름으로 맞추세요. -->
   <a class="banner" href="https://consent.taesunglaw.com/consent/UIF01/14">
     <img src="kakao_link_card/banner.png" alt="입주민들의 의견 파워 - 위임장 작성하기">
   </a>
 
+  <a class="status-link" href="status.html">
+    <span>
+      <span class="label">위임장 제출 현황 보기</span>
+      <span class="desc">동호수별 제출 현황을 한눈에</span>
+    </span>
+    <span class="rate">21.4%</span>
+  </a>
+
   <p class="hint">
-	※ 계약서 첨부 시 주민등록번호 뒷자리를 가린 후 첨부해 주세요.<br>
-	※ 계약자 및 공동명의인의 주소는 본인 확인을 위해 현재 거주 중인 주소로 입력해 주세요.<br>
+    ※ 계약서 첨부 시 주민등록번호 뒷자리를 가린 후 첨부해 주세요.<br>
+    ※ 계약자 및 공동명의인의 주소는 본인 확인을 위해 현재 거주 중인 주소로 입력해 주세요.<br>
   </p>
 </body>
 </html>
