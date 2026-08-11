@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>운정 아이파크 포레스트 - 정회원 가입 안내</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="운정 아이파크 포레스트 - 정회원 가입 안내">
+  <meta property="og:description" content="정회원 혜택 안내 및 가입 방법을 확인하세요.">
+  <meta property="og:image" content="https://unjeongiparkforest.github.io/kakao_link_card/banner.png">
+  <meta property="og:url" content="https://unjeongiparkforest.github.io/member.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", "Malgun Gothic", sans-serif;
+      background: #f4f5f7; min-height: 100vh; color: #222;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 32px 16px 56px;
+    }
+    .wrap { max-width: 560px; width: 100%; }
+
+    .top-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: #2f6fed; text-decoration: none; font-size: 14px; font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .top-link:hover { text-decoration: underline; }
+
+    h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+    .subtitle { font-size: 14.5px; color: #666; margin-bottom: 28px; line-height: 1.6; }
+
+    .card {
+      background: #fff; border-radius: 16px; padding: 24px 22px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.07); margin-bottom: 20px;
+    }
+    .card h2 {
+      font-size: 16.5px; font-weight: 800; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card h2 .badge {
+      display:inline-flex; align-items:center; justify-content:center;
+      width: 22px; height: 22px; border-radius: 6px; background:#eaf0fe;
+      color:#2f6fed; font-size: 13px; font-weight: 800;
+    }
+    .card p { font-size: 14.5px; line-height: 1.75; color: #333; }
+    .card p + p { margin-top: 8px; }
+
+    .fee-list { list-style: none; margin-top: 4px; }
+    .fee-list li {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 4px; border-bottom: 1px solid #eee; font-size: 14.5px;
+    }
+    .fee-list li:last-child { border-bottom: none; }
+    .fee-list .cond { color: #333; }
+    .fee-list .cond .tag {
+      display: inline-block; margin-left: 8px; padding: 2px 8px;
+      background: #eaf0fe; color: #2f6fed; border-radius: 999px;
+      font-size: 11.5px; font-weight: 700; vertical-align: middle;
+    }
+    .fee-list .amt { font-weight: 800; color: #222; font-size: 15.5px; white-space: nowrap; }
+
+    .note {
+      margin-top: 14px; font-size: 13px; color: #777; line-height: 1.6;
+      padding-top: 12px; border-top: 1px dashed #e3e3e3;
+    }
+
+    .account-box {
+      background: #f7f9ff; border: 1px solid #e3ebfe; border-radius: 12px;
+      padding: 16px 18px; margin-top: 4px;
+    }
+    .account-row { display:flex; justify-content:space-between; font-size:14.5px; padding: 5px 0; }
+    .account-row .k { color:#666; }
+    .account-row .v { font-weight: 700; color:#222; }
+    .example-box {
+      margin-top: 12px; background:#fff; border-radius: 8px; padding: 10px 12px;
+      font-size: 13.5px; color:#555; border: 1px solid #eee;
+    }
+    .example-box b { color:#2f6fed; }
+
+    .steps { counter-reset: step; margin-top: 4px; }
+    .steps li {
+      list-style: none; display: flex; gap: 12px; padding: 10px 0;
+      font-size: 14.5px; line-height: 1.6; color:#333;
+    }
+    .steps li::before {
+      counter-increment: step; content: counter(step);
+      flex: none; width: 22px; height: 22px; border-radius: 50%;
+      background:#2f6fed; color:#fff; font-size: 12px; font-weight: 800;
+      display:flex; align-items:center; justify-content:center;
+    }
+
+    .benefit-img { width: 100%; border-radius: 10px; display:block; margin-top: 4px; }
+
+    .cta {
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      background:#2f6fed; color:#fff; text-decoration:none; font-weight:700;
+      font-size: 15px; padding: 15px; border-radius: 12px; margin-top: 6px;
+      box-shadow: 0 4px 14px rgba(47,111,237,.28);
+      transition: transform .12s ease, box-shadow .15s ease;
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(47,111,237,.32); }
+
+    .footer-note { text-align:center; font-size:12.5px; color:#999; margin-top: 22px; line-height:1.7; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="top-link" href="index.html">&larr; 위임장 작성 페이지로 돌아가기</a>
+
+    <h1>정회원 가입 안내</h1>
+    <p class="subtitle">운정 아이파크 포레스트 입주예정자협의회 정회원 혜택과 가입 방법을 안내드립니다.</p>
+
+    <div class="card">
+      <h2><span class="badge">1</span>정회원 회비 안내</h2>
+      <p>정회원 회비는 최초 가입 시 1회만 납부하는 회비입니다. 이후 별도의 연회비나 추가 회비는 부과되지 않습니다.</p>
+      <ul class="fee-list">
+        <li>
+          <span class="cond">2026년 12월 31일까지 가입<span class="tag">현재 적용</span></span>
+          <span class="amt">3만 원</span>
+        </li>
+        <li>
+          <span class="cond">2027년 12월 31일까지 가입</span>
+          <span class="amt">5만 원</span>
+        </li>
+        <li>
+          <span class="cond">2028년 1월 1일 이후 가입</span>
+          <span class="amt">7만 원(예정)</span>
+        </li>
+      </ul>
+      <div class="note">※ 회비는 가입 시점 기준으로 적용되며, 이후 인상되어도 추가 납부 의무는 없습니다.</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">2</span>입금 계좌 안내</h2>
+      <div class="account-box">
+        <div class="account-row"><span class="k">입금 계좌</span><span class="v">기업은행 452-047150-04-016</span></div>
+        <div class="account-row"><span class="k">예금주</span><span class="v">운정 아이파크 포레스트 입주예정자협의회</span></div>
+      </div>
+      <div class="example-box">
+        ※ 입금자명은 <b>동호수+성명</b> 형식으로 부탁드립니다.<br>
+        예) 2152001홍길동
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">3</span>가입 절차</h2>
+      <ol class="steps">
+        <li>위 계좌로 해당 회비를 입금합니다. (입금자명: 동호수+성명)</li>
+        <li>입금 완료 후 <b>[정회원 등업 요청]</b> 게시판에 등업 신청 글을 작성합니다.</li>
+        <li>운영진 확인 후 정회원으로 등업 처리됩니다.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">4</span>회계 운영 관련 안내</h2>
+      <p>협의회 회비의 입·출금 내역 및 사용 내역은 별도 게시판을 통해 투명하게 공지할 예정입니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">★</span>정회원 특별 혜택</h2>
+      <p>법무법인 및 입주박람회 주관사와의 협약에 따라 정회원 대상 특별 혜택이 제공됩니다.</p>
+      <img class="benefit-img" src="kakao_link_card/mebers.png" alt="정회원 특별 혜택 안내">
+    </div>
+
+    <a class="cta" href="index.html">위임장 작성하러 가기 →</a>
+
+    <p class="footer-note">
+      문의사항은 카페 공지 또는 운영진에게 남겨주세요.<br>
+      운정 아이파크 포레스트 입주예정자협의회
+    </p>
+  </div>
+</body>
+</html>
