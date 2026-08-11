@@ -91,7 +91,21 @@
       display:flex; align-items:center; justify-content:center;
     }
 
-    .benefit-img { width: 100%; border-radius: 10px; display:block; margin-top: 4px; }
+    .benefit-link { display: block; margin-top: 4px; }
+    .benefit-img {
+      display: block; width: 100%; height: auto;
+      max-width: 440px; margin: 0 auto; border-radius: 10px;
+    }
+    .benefit-hint { margin-top: 10px; font-size: 12.5px; color: #999; text-align: center; }
+
+    /* 모바일에서는 카드 좌우 여백까지 써서 이미지를 최대한 크게 */
+    @media (max-width: 520px) {
+      .benefit-link {
+        margin-left: -22px; margin-right: -22px;
+        width: calc(100% + 44px);
+      }
+      .benefit-img { max-width: none; border-radius: 6px; }
+    }
 
     .cta {
       display:flex; align-items:center; justify-content:center; gap:8px;
@@ -161,7 +175,11 @@
     <div class="card">
       <h2><span class="badge">★</span>정회원 특별 혜택</h2>
       <p>법무법인 및 입주박람회 주관사와의 협약에 따라 정회원 대상 특별 혜택이 제공됩니다.</p>
-      <img class="benefit-img" src="kakao_link_card/members.png" alt="정회원 특별 혜택 안내">
+      <a class="benefit-link" href="kakao_link_card/members.png" target="_blank" rel="noopener">
+        <img class="benefit-img" src="kakao_link_card/members.png" alt="정회원 특별 혜택 안내"
+             width="490" height="1196" loading="lazy">
+      </a>
+      <p class="benefit-hint">이미지를 누르면 원본 크기로 볼 수 있습니다.</p>
     </div>
 
     <a class="cta" href="index.html">위임장 작성하러 가기 →</a>
