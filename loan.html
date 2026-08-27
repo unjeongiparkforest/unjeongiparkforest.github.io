@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>운정 아이파크 포레스트 - 중도금 대출 자서 안내</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="운정 아이파크 포레스트 - 중도금 대출 자서 안내">
+  <meta property="og:description" content="평형과 동을 고르면 담당 은행·연락처·예약 페이지·대출 조건·필요 서류를 한 번에 볼 수 있습니다.">
+  <meta property="og:image" content="https://unjeongiparkforest.github.io/kakao_link_card/banner.png">
+  <meta property="og:url" content="https://unjeongiparkforest.github.io/loan.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", "Malgun Gothic", sans-serif;
+      background: #f4f5f7; min-height: 100vh; color: #222;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 32px 16px 56px;
+    }
+    .wrap { max-width: 560px; width: 100%; }
+
+    .top-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: #2f6fed; text-decoration: none; font-size: 14px; font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .top-link:hover { text-decoration: underline; }
+
+    h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+    .subtitle { font-size: 14.5px; color: #666; margin-bottom: 24px; line-height: 1.6; }
+
+    .card {
+      background: #fff; border-radius: 16px; padding: 24px 22px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.07); margin-bottom: 20px;
+    }
+    /* 이 페이지에서 사람들이 실제로 찾는 건 "내 동은 어느 은행이냐" 하나다. 그 카드만
+       테두리를 줘서 스크롤 중에 먼저 걸리게 한다. */
+    .card.pick { border:1.5px solid #cfdefb; box-shadow:0 4px 16px rgba(47,111,237,.10); }
+
+    .card h2 {
+      font-size: 16.5px; font-weight: 800; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card h2 .badge {
+      display:inline-flex; align-items:center; justify-content:center;
+      width: 22px; height: 22px; border-radius: 6px; background:#eaf0fe;
+      color:#2f6fed; font-size: 13px; font-weight: 800; flex: none;
+    }
+
+    .bullets { list-style: none; margin-top: 2px; }
+    .bullets li {
+      position: relative; padding: 7px 0 7px 15px;
+      font-size: 14.5px; line-height: 1.7; color: #333;
+    }
+    .bullets li::before {
+      content: ""; position: absolute; left: 2px; top: 15px;
+      width: 4px; height: 4px; border-radius: 50%; background: #2f6fed;
+    }
+
+    /* 예약 기간은 이 페이지에서 가장 시간에 쫓기는 값이라 문장 안에 섞지 않는다. */
+    .period-box {
+      background: #f7f9ff; border: 1px solid #e3ebfe; border-radius: 12px;
+      padding: 16px 18px; margin-top: 16px; text-align: center;
+    }
+    .period-box .k { font-size: 12.5px; color: #6b7a99; font-weight: 700; }
+    .period-box .v { display:block; margin-top: 5px; font-size: 17px; font-weight: 800; color:#2f6fed; }
+    .after-box { margin-top: 12px; font-size: 13px; color:#777; line-height: 1.7; }
+
+    /* ── 평형·동 선택기 ───────────────────────────────────────── */
+    .step-label { font-size: 12.5px; font-weight: 800; color:#7a8394; margin-bottom: 9px; }
+    .step + .step { margin-top: 18px; }
+    .chips { display:flex; flex-wrap:wrap; gap: 7px; }
+    .chip {
+      font-family: inherit; cursor: pointer;
+      padding: 9px 13px; border-radius: 999px; border: 1.5px solid #dfe3ea;
+      background:#fff; color:#444; font-size: 13.5px; font-weight: 700;
+      transition: background .1s ease, border-color .1s ease, color .1s ease;
+    }
+    .chip:hover { border-color:#b9c6dd; }
+    .chip[aria-pressed="true"] { background:#2f6fed; border-color:#2f6fed; color:#fff; }
+    .picker-hint { margin-top: 12px; font-size: 12.5px; color:#8b93a1; line-height:1.6; }
+
+    /* 결과는 선택의 대답이라 선택기와 같은 카드 안에서, 색으로만 갈라 둔다. */
+    .res { margin-top: 18px; padding-top: 16px; border-top: 1px dashed #e3e3e3; }
+    .res-card {
+      background:#f7f9ff; border:1.5px solid #cfdefb; border-radius: 14px;
+      padding: 17px 18px;
+    }
+    .res-card + .res-card { margin-top: 12px; }
+    .res-bank { font-size: 18.5px; font-weight: 800; color:#2f6fed; }
+    .res-branch { margin-top: 4px; font-size: 15px; font-weight: 800; color:#222; }
+    .res-when-dong { margin-top: 3px; font-size: 12.5px; color:#7a8394; }
+    .res-tels { margin-top: 11px; display:flex; flex-wrap:wrap; gap:7px; }
+    .res-meta { margin-top: 13px; padding-top: 12px; border-top: 1px solid #e4ebfa; }
+    .m-row { display:flex; gap:10px; padding: 4px 0; font-size: 13.5px; line-height:1.6; }
+    .m-k { flex:none; width: 62px; color:#7a8394; font-weight:700; font-size:12.5px; padding-top:1px; }
+    .m-v { color:#333; }
+    .m-v .addr { display:block; font-size:12.5px; color:#8b93a1; margin-top:2px; }
+    .res-warn {
+      margin-top: 11px; background:#fff4d6; border:1px solid #f0dca8; border-radius:10px;
+      padding: 11px 13px; font-size: 12.5px; line-height:1.65; color:#6b5520;
+    }
+    /* 담당 은행을 알아낸 직후가 예약으로 넘어갈 자리다. 결과 카드 안에서 유일하게 채운
+       버튼이라 다음에 할 일이 하나로 보인다. */
+    .res-cta {
+      display:flex; align-items:center; justify-content:center; gap:6px;
+      margin-top: 14px; background:#2f6fed; color:#fff; text-decoration:none;
+      font-size: 14.5px; font-weight: 700; padding: 13px; border-radius: 11px;
+      box-shadow: 0 3px 12px rgba(47,111,237,.26);
+    }
+    .res-cta:hover { background:#2661d8; }
+
+    /* 조건·서류는 필요할 때만 펼치게 접어 둔다. 펼쳐 두면 정작 은행 이름이 묻힌다. */
+    details.sec { margin-top: 10px; background:#fff; border:1px solid #e4ebfa; border-radius: 11px; }
+    details.sec > summary {
+      list-style: none; cursor: pointer; padding: 13px 15px;
+      font-size: 14px; font-weight: 800; color:#333;
+      display:flex; align-items:center; justify-content:space-between; gap:8px;
+    }
+    details.sec > summary::-webkit-details-marker { display:none; }
+    details.sec > summary::after { content:"▾"; color:#b9c2d4; font-size:12px; }
+    details.sec[open] > summary::after { content:"▴"; }
+    details.sec > summary .tag {
+      margin-left:auto; margin-right:6px; font-size:11px; font-weight:800;
+      background:#fff4d6; color:#8a6a1c; border-radius:999px; padding:3px 9px;
+    }
+    .sec-body { padding: 0 15px 15px; }
+
+    /* 번호는 누르는 것이라 링크가 아니라 버튼처럼 보여야 한다. */
+    .tel {
+      display:inline-flex; align-items:center; gap:5px;
+      background:#fff; color:#2f6fed; text-decoration:none;
+      font-size: 13.5px; font-weight: 700; padding: 7px 12px; border-radius: 999px;
+      white-space: nowrap; border: 1px solid #dbe6fd;
+    }
+    .tel:hover { background:#eef3ff; }
+    .tel .who { color:#5b7ac4; font-weight: 600; }
+
+    /* 조건은 항목명과 값이 짝이라 문장보다 두 칸 배열이 빠르게 읽힌다. */
+    .terms .t-row { display:flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f1f4; }
+    .terms .t-row:last-child { border-bottom: none; }
+    .terms .t-k { flex: none; width: 76px; font-size: 12.5px; font-weight: 700; color:#7a8394; line-height:1.6; padding-top:1px; }
+    .terms .t-v { font-size: 13.5px; color:#333; line-height: 1.65; }
+    .terms .t-v .sub { display:block; margin-top:3px; font-size:12px; color:#8b93a1; line-height:1.6; }
+
+    /* 회차 실행일은 6개뿐이라 표보다 격자가 가볍고 한눈에 들어온다. */
+    .rounds { display:grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px; }
+    .rounds div { background:#f7f9ff; border:1px solid #e4ebfa; border-radius:8px; padding:8px 4px; text-align:center; }
+    .rounds .n { display:block; font-size: 11px; font-weight: 800; color:#7a8394; }
+    .rounds .d { display:block; margin-top: 3px; font-size: 12px; font-weight: 700; color:#333; }
+
+    /* 서류는 빠뜨리면 그날 헛걸음이라 번호를 붙여 세면서 챙기게 한다. */
+    .docs { list-style: none; counter-reset: doc; }
+    .docs li {
+      position: relative; padding: 8px 0 8px 25px;
+      font-size: 13.5px; line-height: 1.65; color:#333; border-bottom: 1px solid #f5f6f8;
+    }
+    .docs li:last-child { border-bottom: none; }
+    .docs li::before {
+      counter-increment: doc; content: counter(doc);
+      position: absolute; left: 0; top: 9px;
+      width: 18px; height: 18px; border-radius: 5px; background:#eef1f6; color:#68718a;
+      font-size: 11px; font-weight: 800;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .docs li .sub { display:block; margin-top: 2px; font-size: 12px; color:#8b93a1; line-height:1.55; }
+
+    .sec-sub { margin: 16px 0 4px; font-size: 12.5px; font-weight: 800; color:#5a6478; }
+    .sec-note { margin-top: 12px; font-size: 12px; color:#8b93a1; line-height:1.65;
+      padding-top: 10px; border-top: 1px dashed #e8eaee; }
+
+    .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table.tbl { border-collapse: collapse; width: 100%; min-width: 400px; font-size: 12.5px; }
+    table.tbl th, table.tbl td { padding: 8px 9px; text-align: left; border-bottom: 1px solid #f0f1f4; vertical-align: top; }
+    table.tbl th { background:#fafbfd; color:#7a8394; font-weight: 700; font-size: 11.5px; white-space: nowrap; }
+    table.tbl td { color:#333; line-height:1.55; }
+    table.tbl td:first-child { font-weight: 700; white-space: nowrap; }
+    table.tbl tr:last-child td { border-bottom: none; }
+
+    .warn-list { list-style: none; }
+    .warn-list li {
+      position: relative; padding: 8px 0 8px 20px;
+      font-size: 14.5px; line-height: 1.7; color: #333;
+    }
+    .warn-list li::before {
+      content: "!"; position: absolute; left: 0; top: 9px;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: #ffeaea; color: #d94a4a;
+      font-size: 10.5px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cta {
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      max-width: 420px; margin: 0 auto;
+      background:#fff; color:#2f6fed; text-decoration:none; font-weight:700;
+      font-size: 15px; padding: 15px; border-radius: 12px;
+      border:1.5px solid #cfdefb;
+      transition: background .12s ease, box-shadow .15s ease;
+    }
+    .cta:hover { background:#f7f9ff; box-shadow: 0 4px 14px rgba(47,111,237,.12); }
+    .cta-note { margin-bottom: 12px; font-size: 13.5px; color: #666; text-align: center; line-height: 1.7; }
+
+    .footer-note { text-align:center; font-size:12.5px; color:#999; margin-top: 24px; line-height:1.7; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="top-link" href="index.html">&larr; 첫 화면으로 돌아가기</a>
+
+    <h1>중도금 대출 자서 안내</h1>
+    <p class="subtitle">시행사 안내 문자와 은행별 대출안내문을 정리했습니다.</p>
+
+    <div class="card">
+      <h2><span class="badge">1</span>신청 대상 · 방문예약</h2>
+      <ul class="bullets">
+        <li>금회 신청 대상은 <b>2026.06.06까지 계약자</b>분들입니다. (문자 수신자에 한함)</li>
+        <li>계약자 <b>본인에 한하여</b> 방문예약이 가능합니다. (중복예약 불가)</li>
+        <li>사전예약제로 운영되오니 <b>예약 후 방문</b>해 주시기 바랍니다.</li>
+        <li><b>2차 계약금 미납 시</b> 중도금 대출이 불가합니다.</li>
+      </ul>
+      <div class="period-box">
+        <span class="k">방문예약 기간</span>
+        <span class="v">2026.08.24(월) ~ 09.06(일)</span>
+      </div>
+      <p class="after-box">
+        예약 페이지는 <b>은행마다 주소가 다릅니다.</b> 아래에서 평형과 동을 고르시면
+        담당 은행의 예약 버튼이 바로 나옵니다.
+      </p>
+    </div>
+
+    <div class="card pick">
+      <h2><span class="badge">2</span>내 세대 담당 은행 찾기</h2>
+
+      <div class="step">
+        <div class="step-label">STEP 1 · 평형 선택</div>
+        <div class="chips" id="typeChips"></div>
+      </div>
+
+      <div class="step" id="dongStep" hidden>
+        <div class="step-label">STEP 2 · 동 선택</div>
+        <div class="chips" id="dongChips"></div>
+      </div>
+
+      <div class="res" id="result" hidden></div>
+
+      <p class="picker-hint" id="pickerHint">평형을 먼저 선택해 주세요.</p>
+      <noscript>
+        <p class="picker-hint">브라우저에서 자바스크립트가 꺼져 있어 선택 기능을 쓸 수 없습니다.
+          카페 공지글의 은행별 안내문을 확인해 주세요.</p>
+      </noscript>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">!</span>유의사항</h2>
+      <ul class="warn-list">
+        <li><b>2주택 이상 보유 세대는 대출이 불가</b>합니다. 1주택 세대는 소유권이전 등기일로부터 6개월 이내
+          기존 주택 처분 및 전입, 무주택 세대는 6개월 이내 전입 조건으로만 가능합니다.</li>
+        <li>대출 실행 후 전매하면 전입 특약 위반으로 <b>향후 3년간 전 금융기관 주택관련대출이 제한</b>될 수 있습니다.</li>
+        <li>HUG·주택금융공사 중도금보증을 <b>세대 기준 2건 이상 보유</b>하면 대출이 불가합니다.</li>
+        <li>준공 시 DSR·주택담보 규제에 따라 <b>잔금대출이 제한</b>될 수 있습니다.</li>
+        <li>동별·주택형별 일정이 상이하오니 반드시 확인하시어 착오 없으시길 바랍니다.</li>
+        <li>대출 관련 문의는 담당 은행으로 직접 해주시기 바랍니다. (견본주택 상담 불가)</li>
+      </ul>
+    </div>
+
+    <p class="cta-note">자세한 내용은 카페글을 참고해 주세요.</p>
+    <a class="cta" href="https://cafe.naver.com/unjeongiparkforest/1543" target="_blank" rel="noopener">
+      카페 공지글 보기 →
+    </a>
+
+    <p class="footer-note">
+      문의사항은 카페 또는 운영진에게 남겨주세요.<br>
+      운정 아이파크 포레스트 입주예정자협의회
+    </p>
+  </div>
+
+<script>
+"use strict";
+/* 은행·지점·동 배정은 전부 은행별 대출안내문(2026.08 발행)에서 옮긴 값이다.
+   여기 값을 고칠 때는 안내문 원문을 근거로 하고, 문자 내용으로 덮어쓰지 않는다.
+   문자와 안내문이 어긋나는 항목은 warn에 사유를 남겨 화면에 그대로 띄운다. */
+var RESERVE = "https://www.i-park.com/reserveVisit/reservation?buildingSeq=14470&seq=";
+
+var BANKS = {
+  suhyup: {
+    name: "수협은행", period: "9.2(수) ~ 9.6(일)", hours: "",
+    place: "운정 아이파크 모델하우스", addr: "파주시 금바위로 10",
+    reserve: RESERVE + "10374",
+    center: [["고객지원센터", "1588-1515"]],
+    term: "HUG 보증서 만기일까지",
+    termSub: "실제입주일, 보증서 만기일, 입주지정일로부터 3개월이 되는 날, 소유권등기 완료일 중 빠른 날로 조정",
+    cycle: "3개월", prepay: "0.02%",
+    prep: ["비대면 계좌개설 후 <b>집단대출 사전동의서</b>까지 현장 방문 전에 제출해 주세요.",
+           "비대면 계좌개설 시 <b>담당 영업점을 반드시 입력</b>해야 합니다.",
+           "보증료·인지세는 본인 명의 수협은행 계좌로 입금합니다."]
+  },
+  hana: {
+    name: "하나은행", period: "9.2(수) ~ 9.6(일)", hours: "오전 09시 ~ 오후 16시 30분",
+    place: "운정역HB하우스토리 시티 3층 311호", addr: "파주시 와동동 경의로 1224",
+    reserve: RESERVE + "10373",
+    center: [["고객센터", "1599-2222"]],
+    term: "2029년 3월 30일", termSub: "단, HUG 보증서 만기일 이내",
+    cycle: "6개월", prepay: "0.59%",
+    prep: ["<b>9.1(화)까지</b> 비대면 계좌개설과 <b>하나원큐</b> 가입을 마쳐주세요.",
+           "계좌개설 시 영업점 선택란에 <b>담당 지점</b>(운정·파주·교하)을 입력해야 합니다.",
+           "중도금대출 신청은 모바일뱅킹으로 진행됩니다. 공동명의는 모두 방문해 작성해야 합니다."]
+  },
+  woori: {
+    name: "우리은행", period: "9.2(수) ~ 9.5(토)", hours: "평일 09:00 ~ 17:00 (주말·공휴일 휴무)",
+    place: "우리은행 탄현지점", addr: "고양시 일산서구 일현로 107",
+    reserve: RESERVE + "10378",
+    center: [],
+    term: "2029년 3월 30일", termSub: "만기일시상환",
+    cycle: "6개월", prepay: "0.35%",
+    prep: ["<b>WON뱅킹</b> 회원가입과 통장개설을 먼저 하셔야 합니다.",
+           "스마트징검다리론 신청 시 <b>모승인번호 42612000176</b>을 입력합니다.",
+           "공동명의는 본인과 공동명의인 모두 신분증을 지참해 방문해야 합니다."]
+  },
+  kb: {
+    name: "국민은행", period: "9.3(목) ~ 9.5(토)", hours: "09시 ~ 17시",
+    place: "운정역HB하우스토리 시티 3층 311호~315호", addr: "파주시 와동동 경의로 1224",
+    reserve: RESERVE + "10375",
+    center: [["고객센터", "1588-9999"]],
+    term: "2029년 3월 30일", termSub: "만기일시상환",
+    cycle: "6개월", prepay: "0.54%",
+    prep: ["<b>KB스타뱅킹</b> 비대면 대출신청은 9.1(화)~9.5(토)에 가능합니다.",
+           "<b>공동명의는 비대면 신청이 불가</b>합니다.",
+           "비대면으로 신청했더라도 접수장소를 방문해 서류를 제출해야 합니다."]
+  },
+  nh: {
+    name: "농협은행", period: "9.3(목) ~ 9.6(일)", hours: "오전 9시 ~ 오후 4시",
+    place: "운정역HB하우스토리 시티 3층 311호~315호", addr: "파주시 와동동 경의로 1224",
+    reserve: RESERVE + "10377",
+    center: [["고객행복센터", "1661-3000"], ["고객행복센터", "1522-3000"]],
+    term: "2029년 3월 30일", termSub: "최초 대출실행일로부터 만기일시상환",
+    cycle: "6개월", prepay: "0.52%",
+    prep: ["<b>올원뱅크</b>로 입출금통장을 미리 개설해 두시면 현장 처리가 빠릅니다.",
+           "통장 개설 시 <b>담당 지점</b>을 확인 후 선택해야 합니다.",
+           "세대원 방문이 어려우면 올원뱅크 앱으로 비대면 동의가 가능합니다. (국내 통신사 휴대폰 필요)"]
+  }
+};
+
+var BR = {
+  sh_gildong:  { bank: "suhyup", branch: "길동금융센터",   staff: "김성운 대리", tels: [["", "02-485-6022"]] },
+  sh_garak:    { bank: "suhyup", branch: "가락동금융센터", staff: "이지훈 대리", tels: [["", "02-6425-0961"]] },
+  sh_amsa:     { bank: "suhyup", branch: "암사역지점",     staff: "박성미 대리", tels: [["", "02-442-1981"]] },
+  sh_yangjae:  { bank: "suhyup", branch: "양재동지점",     staff: "박수정 대리", tels: [["", "02-571-8077"]] },
+  sh_ilsan:    { bank: "suhyup", branch: "일산지점",       staff: "우성호 대리", tels: [["", "031-901-5347"]] },
+
+  hana_unjeong: { bank: "hana", branch: "하나은행 운정지점", staff: "", tels: [["", "031-8071-3100"]] },
+  hana_paju:    { bank: "hana", branch: "하나은행 파주지점", staff: "", tels: [["", "031-957-3741"]] },
+  hana_gyoha:   { bank: "hana", branch: "하나은행 교하지점", staff: "", tels: [["", "031-948-1111"]] },
+  // 담당 지점이 안 잡히는 동이다. 아무 지점 번호나 붙이면 그 지점이 담당인 것처럼 읽히므로
+  // 대표번호(BANKS.center)만 나가게 비워 둔다.
+  hana_unknown: { bank: "hana", branch: "담당 지점 미확인", staff: "", tels: [],
+    warn: "이 동은 문자상 하나은행 대상이지만, 하나은행 안내문의 지점 배정 목록(202~205·207~209·217~219·222~225동)에 들어 있지 않습니다. 담당 지점을 하나은행에 먼저 확인해 주세요." },
+
+  woori_kim:   { bank: "woori", branch: "우리은행 탄현지점", staff: "김대헌 차장 (내선 310)", tels: [["", "031-914-4271"]] },
+  woori_seong: { bank: "woori", branch: "우리은행 탄현지점", staff: "성대형 부지점장 (내선 312)", tels: [["", "031-914-4271"]] },
+  woori_park3: { bank: "woori", branch: "우리은행 탄현지점", staff: "박세현 계장 (내선 313)", tels: [["", "031-914-4271"]] },
+  woori_park4: { bank: "woori", branch: "우리은행 탄현지점", staff: "박경윤 대리 (내선 314)", tels: [["", "031-914-4271"]] },
+  woori_unknown: { bank: "woori", branch: "담당자 미확인", staff: "", tels: [["", "031-914-4271"]],
+    warn: "자서 장소 안내에는 192㎡가 우리은행으로 되어 있으나, 우리은행 안내문의 해당타입(74·152㎡)과 담당자 목록에는 192㎡가 없습니다. 반드시 개별 수신 문자와 우리은행에 확인해 주세요." },
+
+  kb_gyoha: { bank: "kb", branch: "KB국민은행 교하지점", staff: "김선주 팀장 / 엄재영 팀장",
+    tels: [["", "031-942-9650"], ["", "031-942-9651"], ["", "031-942-9652"], ["", "031-942-9653"], ["", "031-942-9654"]],
+    memo: "담당 직원은 창구 응대 중이라 전화 연결이 어려울 수 있습니다. 콜백을 남기시면 확인되는 대로 연락드린다고 안내되어 있습니다." },
+
+  nh_yeoksam: { bank: "nh", branch: "역삼금융센터", staff: "",
+    tels: [["김보미 팀장", "02-2187-2513"], ["신선주 과장", "02-2187-2530"], ["이요섭 계장", "02-2187-2528"]] },
+  nh_geoyeo:  { bank: "nh", branch: "거여역지점", staff: "",
+    tels: [["이정은 팀장", "02-2240-7146"], ["예지훈 과장", "02-2240-7151"], ["조준혁 계장", "02-2240-7145"]] },
+  nh_jamsil:  { bank: "nh", branch: "잠실지점", staff: "",
+    tels: [["박정훈 팀장", "02-3418-3563"], ["권정무 과장", "02-3418-3565"], ["김종훈 과장", "02-3418-3568"]] },
+  nh_unknown: { bank: "nh", branch: "담당 지점 미확인", staff: "", tels: [],
+    warn: "이 동은 문자상 농협은행 대상이지만, 농협은행 안내문의 취급 영업점 목록(206·208·209·212·214·215·216·221·222·224동)에 들어 있지 않습니다. 담당 지점을 농협은행에 먼저 확인해 주세요." }
+};
+
+/* 평형 → [동, 지점키, (같은 동이 층으로 갈릴 때의 조건)] */
+var UNITS = {
+  "63":  [["204","sh_ilsan"],["205","sh_gildong"],["211","sh_gildong"],["220","sh_gildong"]],
+  "74":  [["206","woori_kim"],["207","woori_kim"],["208","woori_seong"],["217","woori_park4"],["218","woori_park3"],["219","woori_seong"]],
+  "84A": [["202","hana_unjeong"],["203","hana_unjeong"],["204","hana_unjeong"],["205","hana_unjeong"],
+          ["207","hana_unjeong","19층까지"],["207","hana_paju","20층부터"],
+          ["208","hana_paju"],["209","hana_paju"],
+          ["210","kb_gyoha"],["211","kb_gyoha"],["212","kb_gyoha"],
+          ["213","nh_unknown"],["214","nh_yeoksam"],["215","nh_jamsil"],["216","nh_geoyeo"],
+          ["217","hana_paju"],["218","hana_paju"],["219","hana_paju"],
+          ["220","hana_unknown"],["221","hana_unknown"],
+          ["222","hana_gyoha"],["223","hana_gyoha"],["224","hana_gyoha"],["225","hana_gyoha"]],
+  "84B": [["202","sh_yangjae"],["204","sh_garak"],["205","sh_garak"],["206","sh_amsa"],["210","sh_garak"],
+          ["211","sh_yangjae"],["212","sh_gildong"],["213","sh_garak"],["215","sh_yangjae"],["216","sh_yangjae"],
+          ["219","sh_amsa"],["224","sh_amsa"]],
+  "84C": [["203","sh_garak"],["207","sh_yangjae"],["208","sh_garak"],["209","sh_ilsan"],["214","sh_yangjae"],
+          ["217","sh_yangjae"],["218","sh_amsa"],["222","sh_amsa"],["223","sh_amsa"],["225","sh_ilsan"]],
+  "99":  [["206","nh_geoyeo"],["208","nh_yeoksam"],["209","nh_yeoksam"],["212","nh_yeoksam"],
+          ["221","nh_yeoksam"],["222","nh_jamsil"],["224","nh_yeoksam"]],
+  "113": [["", "kb_gyoha"]],
+  "152": [["211","woori_park4"]],
+  "171": [["212","sh_ilsan"],["221","sh_ilsan"],["224","sh_ilsan"]],
+  "192": [["", "woori_unknown"]],
+  "197": [["210","sh_ilsan"],["213","sh_ilsan"]]
+};
+
+var TYPE_ORDER = ["63","74","84A","84B","84C","99","113","152","171","192","197"];
+
+var ROUNDS = [["1회차","2026.09.28"],["2회차","2026.12.07"],["3회차","2027.05.07"],
+              ["4회차","2027.09.07"],["5회차","2027.12.07"],["6회차","2028.06.07"]];
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function telHtml(pair) {
+  var who = pair[0], num = pair[1], digits = num.replace(/\D/g, "");
+  return '<a class="tel" href="tel:' + digits + '">' +
+    (who ? '<span class="who">' + esc(who) + '</span> ' + esc(num) : "☎ " + esc(num)) + "</a>";
+}
+function sec(title, tag, body) {
+  return '<details class="sec"><summary>' + esc(title) +
+    (tag ? '<span class="tag">' + esc(tag) + "</span>" : "") +
+    '</summary><div class="sec-body">' + body + "</div></details>";
+}
+function row(k, v, sub) {
+  return '<div class="t-row"><div class="t-k">' + esc(k) + '</div><div class="t-v">' + v +
+    (sub ? '<span class="sub">' + sub + "</span>" : "") + "</div></div>";
+}
+
+/* 방문 전 준비 — 은행마다 앱·계좌 절차가 달라 담당 은행 것만 보여준다. */
+function prepBody(bank) {
+  var h = '<p style="font-size:13.5px;line-height:1.7;color:#333;">보증료와 인지세가 ' +
+    "<b>" + esc(bank.name) + ' 본인 명의 계좌에서 출금</b>되므로, 계좌가 없으면 자서 당일 진행이 막힙니다. ' +
+    "비대면 계좌개설과 모바일뱅킹 가입은 공휴일에도 가능합니다.</p>";
+  h += '<ul class="bullets" style="margin-top:6px;">' +
+    bank.prep.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>";
+  h += '<div class="sec-note">※ 비대면으로 신청을 마쳤더라도 <b>접수장소 방문과 서류 제출은 필수</b>입니다. ' +
+    "(대리인 제출 불가)</div>";
+  return h;
+}
+
+/* 대출 조건 — 공통값 위에 은행별로 갈리는 값(기간·변동주기·대환수수료)만 얹는다. */
+function termsBody(bank) {
+  var h = '<div class="terms">';
+  h += row("대출한도", "분양금액의 <b>60% 이내</b> (중도금 1~6회차)", "HUG 보증한도를 초과할 수 없습니다");
+  h += row("대출금리", "<b>연 4.73%</b> = 기준금리 3.18% + 가산금리 1.55%",
+    "2026.08 기준 · 신규취급액 COFIX " + esc(bank.cycle) + " 변동 · 회차별 실행일 기준금리로 확정");
+  h += row("대출기간", "<b>" + esc(bank.term) + "</b>", esc(bank.termSub));
+  h += row("이자", "<b>후불제</b> — 입주 전까지 시행사가 대납하고 입주 시 정산",
+    "입주지정일 이후 이자는 계약자가 은행에 직접 납부");
+  h += row("보증료", "HUG 보증료 <b>연 0.13%</b> (고객 부담)",
+    "저소득·다자녀·장애인·고령자·신혼부부 등 40%, 한부모 60%, 모범납세자 10% 할인 (중복 불가)");
+  h += row("인지세", "5천만원 이하 면제 / 5천만~1억 <b>3.5만원</b> / 1억~10억 <b>7.5만원</b> / 10억 초과 <b>17.5만원</b>",
+    "은행과 고객이 50%씩 부담 · 대출실행일에 계좌에서 출금되니 잔고를 유지해 주세요");
+  // 항목명은 esc()를 거치므로 태그를 넣으면 글자로 나온다. 줄바꿈은 CSS 폭에 맡긴다.
+  h += row("중도상환수수료", "자기자금 상환 시 <b>면제</b>",
+    "타 금융기관 중도금대출로 대환할 때만 " + esc(bank.prepay) + " 징구");
+  h += "</div>";
+  h += '<div class="sec-sub">중도금 회차별 실행일</div>';
+  h += '<div class="rounds">' + ROUNDS.map(function (r) {
+    return '<div><span class="n">' + esc(r[0]) + '</span><span class="d">' + esc(r[1]) + "</span></div>";
+  }).join("") + "</div>";
+  h += '<div class="sec-note">※ 필요한 회차·금액만 신청해 주세요. 필요 이상으로 신청해 실행 당일 상환해도 ' +
+    "약정 이자는 발생합니다. 금리·수수료율은 2026.08 기준이며 실행일에 변경될 수 있습니다.</div>";
+  return h;
+}
+
+/* 방문 대상·필요 서류 — 은행별 차이가 크지 않아 공통으로 두고, 차이는 안내문으로 넘긴다. */
+function docsBody() {
+  var h = '<p style="font-size:13.5px;line-height:1.7;color:#333;"><b>누가 가야 하나요?</b> ' +
+    "세대원 전원의 주택 보유수를 확인해야 하므로 <b>계약자 본인, 공동명의인, 주민등록등본상 세대원 전원</b>이 " +
+    "함께 방문해야 합니다. 미성년자는 생략 가능하고, 성인 세대원은 위임장으로 대체 가능한 은행이 있습니다. " +
+    "<b>대리 접수는 불가</b>합니다.</p>";
+  h += '<div class="sec-sub">공통 서류 (모두 1개월 이내 발급분)</div>';
+  h += '<ul class="docs">' +
+    "<li>분양계약서 원본 및 계약금 영수증<span class=\"sub\">전매한 경우 매매계약서 + 부동산거래계약신고필증</span></li>" +
+    "<li>신분증 실물 (주민등록증 또는 운전면허증)<span class=\"sub\">모바일 신분증·여권은 인정되지 않습니다</span></li>" +
+    "<li>부동산거래계약신고필증</li>" +
+    "<li>주민등록등본 1부<span class=\"sub\">세대원 포함 · 세대주와의 관계 표시</span></li>" +
+    "<li>세대원 전원의 주민등록초본 각 1부<span class=\"sub\">미성년자 포함 · 과거 주소 및 변경사항 포함</span></li>" +
+    "<li>가족관계증명서(상세)</li>" +
+    "<li>건강보험자격득실확인서(전체이력)<span class=\"sub\">건강보험공단 홈페이지·앱 또는 1577-1000 전화 후 팩스 수령</span></li>" +
+    "<li>미성년 세대원이 있는 경우 기본증명서(상세)</li>" +
+    "<li>해당 은행 본인 명의 통장 사본 또는 계좌</li>" +
+    "<li>소득증빙서류 (아래 참조)</li>" +
+    "</ul>";
+  h += '<div class="sec-sub">소득증빙서류 (해당하는 것 1가지)</div>';
+  h += '<div class="tbl-wrap"><table class="tbl">' +
+    "<tr><th>구분</th><th>제출 서류</th></tr>" +
+    "<tr><td>직장인</td><td>재직증명서 + 최근 2개년 근로소득원천징수영수증<br>(재직 1년 미만은 급여명세표 전부, 회사 직인 필수)</td></tr>" +
+    "<tr><td>개인사업자</td><td>사업자등록증 + 최근 2개년 소득금액증명원<br>(개업 1년 미만은 사실증명원 + 건강·장기요양보험료 납부확인서)</td></tr>" +
+    "<tr><td>연금소득자</td><td>연금수급권자확인서 + 연금 지급내역서 또는 거래내역</td></tr>" +
+    "<tr><td>프리랜서</td><td>위촉증명서 + 최근 2개년 소득금액증명원</td></tr>" +
+    "<tr><td>무소득자</td><td>국세청 사실증명원(신고사실 없음) + 건강보험료 납부확인서, 국민연금 가입내역, 신용카드 사용확인서 중 1</td></tr>" +
+    "</table></div>";
+  h += '<div class="sec-note">※ 모든 서류는 <b>주민등록번호가 마스킹 없이 전부 표시</b>되도록 발급해 주세요.<br>' +
+    "※ 공동명의는 명의자 전원이 각각 서류를 준비해 함께 방문해야 합니다.<br>" +
+    "※ 은행별로 요구 서류가 조금씩 다르고 심사 결과에 따라 추가 요청이 있을 수 있습니다.</div>";
+  return h;
+}
+
+var typeChips = document.getElementById("typeChips");
+var dongStep = document.getElementById("dongStep");
+var dongChips = document.getElementById("dongChips");
+var resultEl = document.getElementById("result");
+var hintEl = document.getElementById("pickerHint");
+var state = { type: null, dong: null };
+
+function renderTypes() {
+  typeChips.innerHTML = TYPE_ORDER.map(function (t) {
+    return '<button type="button" class="chip" data-type="' + t + '" aria-pressed="false">' + t + "㎡</button>";
+  }).join("");
+}
+
+function dongListFor(type) {
+  var seen = {}, out = [];
+  (UNITS[type] || []).forEach(function (e) {
+    if (e[0] && !seen[e[0]]) { seen[e[0]] = 1; out.push(e[0]); }
+  });
+  return out;
+}
+
+function renderDongs() {
+  var list = dongListFor(state.type);
+  if (!list.length) { dongStep.hidden = true; return; }
+  dongStep.hidden = false;
+  dongChips.innerHTML = list.map(function (d) {
+    return '<button type="button" class="chip" data-dong="' + d + '" aria-pressed="' +
+      (state.dong === d ? "true" : "false") + '">' + d + "동</button>";
+  }).join("");
+}
+
+function entriesFor(type, dong) {
+  return (UNITS[type] || []).filter(function (e) { return dong ? e[0] === dong : true; });
+}
+
+function renderResult() {
+  var list = dongListFor(state.type);
+  // 동 정보가 없는 평형(113·192)은 곧바로 결과를 보여준다.
+  if (list.length && !state.dong) {
+    resultEl.hidden = true;
+    hintEl.textContent = state.type + "㎡ 세대의 동을 선택해 주세요.";
+    return;
+  }
+  var rows = entriesFor(state.type, state.dong);
+  if (!rows.length) { resultEl.hidden = true; return; }
+
+  resultEl.hidden = false;
+  hintEl.textContent = "다른 세대를 보시려면 위에서 평형을 다시 선택하세요.";
+
+  resultEl.innerHTML = rows.map(function (e) {
+    var br = BR[e[1]], bank = BANKS[br.bank], cond = e[2] || "";
+    var head = state.type + "㎡" + (e[0] ? " " + e[0] + "동" : "") + (cond ? " · " + cond : "");
+    var tels = br.tels.map(telHtml).join("") + bank.center.map(telHtml).join("");
+
+    var h = '<div class="res-card">';
+    h += '<div class="res-bank">' + esc(bank.name) + "</div>";
+    h += '<div class="res-branch">' + esc(br.branch) + (br.staff ? " · " + esc(br.staff) : "") + "</div>";
+    h += '<div class="res-when-dong">' + esc(head) + "</div>";
+    if (tels) { h += '<div class="res-tels">' + tels + "</div>"; }
+    if (br.warn) { h += '<div class="res-warn">⚠ ' + esc(br.warn) + "</div>"; }
+
+    h += '<div class="res-meta">';
+    h += '<div class="m-row"><span class="m-k">자서기간</span><span class="m-v">' + esc(bank.period) + "</span></div>";
+    if (bank.hours) {
+      h += '<div class="m-row"><span class="m-k">접수시간</span><span class="m-v">' + esc(bank.hours) + "</span></div>";
+    }
+    h += '<div class="m-row"><span class="m-k">자서장소</span><span class="m-v">' + esc(bank.place) +
+      '<span class="addr">' + esc(bank.addr) + "</span></span></div>";
+    h += "</div>";
+    if (br.memo) { h += '<div class="res-warn">' + esc(br.memo) + "</div>"; }
+
+    // 예약 페이지는 은행마다 주소가 다르다. 담당 은행을 알아낸 이 자리가 예약으로 보낼 유일한 지점이다.
+    h += '<a class="res-cta" href="' + esc(bank.reserve) + '" target="_blank" rel="noopener">' +
+      esc(bank.name) + " 방문예약 하러 가기 →</a>";
+
+    h += sec("방문 전 준비", "9/1까지", prepBody(bank));
+    h += sec("대출 조건", "", termsBody(bank));
+    h += sec("방문 대상 · 필요 서류", "", docsBody());
+    h += "</div>";
+    return h;
+  }).join("");
+}
+
+typeChips.addEventListener("click", function (ev) {
+  var btn = ev.target.closest("button[data-type]");
+  if (!btn) { return; }
+  state.type = btn.getAttribute("data-type");
+  state.dong = null;
+  Array.prototype.forEach.call(typeChips.querySelectorAll("button"), function (b) {
+    b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+  });
+  renderDongs();
+  renderResult();
+});
+
+dongChips.addEventListener("click", function (ev) {
+  var btn = ev.target.closest("button[data-dong]");
+  if (!btn) { return; }
+  state.dong = btn.getAttribute("data-dong");
+  Array.prototype.forEach.call(dongChips.querySelectorAll("button"), function (b) {
+    b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+  });
+  renderResult();
+});
+
+renderTypes();
+</script>
+</body>
+</html>
