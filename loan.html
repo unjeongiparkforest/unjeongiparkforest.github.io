@@ -18,6 +18,9 @@
       background: #f4f5f7; min-height: 100vh; color: #222;
       display: flex; flex-direction: column; align-items: center;
       padding: 32px 16px 56px;
+      /* 한글은 어절 단위로 끊어야 읽힌다. 기본값은 글자 아무 데서나 잘라 좁은 화면에서
+         단어가 두 줄로 쪼개진다. */
+      word-break: keep-all; overflow-wrap: break-word;
     }
     .wrap { max-width: 560px; width: 100%; }
 
@@ -71,11 +74,13 @@
     /* ── 평형·동 선택기 ───────────────────────────────────────── */
     .step-label { font-size: 12.5px; font-weight: 800; color:#7a8394; margin-bottom: 9px; }
     .step + .step { margin-top: 18px; }
-    .chips { display:flex; flex-wrap:wrap; gap: 7px; }
+    /* 동 버튼이 24개까지 늘어난다. flex-wrap으로 두면 줄마다 폭이 달라 훑기 어렵고
+       손가락으로 겨냥하기도 나쁘다. 같은 크기 격자로 깔고 탭 영역을 44px에 맞춘다. */
+    .chips { display:grid; grid-template-columns: repeat(auto-fill, minmax(74px, 1fr)); gap: 7px; }
     .chip {
-      font-family: inherit; cursor: pointer;
-      padding: 9px 13px; border-radius: 999px; border: 1.5px solid #dfe3ea;
-      background:#fff; color:#444; font-size: 13.5px; font-weight: 700;
+      font-family: inherit; cursor: pointer; text-align: center;
+      padding: 12px 6px; border-radius: 999px; border: 1.5px solid #dfe3ea;
+      background:#fff; color:#444; font-size: 14px; font-weight: 700;
       transition: background .1s ease, border-color .1s ease, color .1s ease;
     }
     .chip:hover { border-color:#b9c6dd; }
@@ -142,7 +147,7 @@
     /* 조건은 항목명과 값이 짝이라 문장보다 두 칸 배열이 빠르게 읽힌다. */
     .terms .t-row { display:flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f1f4; }
     .terms .t-row:last-child { border-bottom: none; }
-    .terms .t-k { flex: none; width: 76px; font-size: 12.5px; font-weight: 700; color:#7a8394; line-height:1.6; padding-top:1px; }
+    .terms .t-k { flex: none; width: 88px; font-size: 12.5px; font-weight: 700; color:#7a8394; line-height:1.6; padding-top:1px; }
     .terms .t-v { font-size: 13.5px; color:#333; line-height: 1.65; }
     .terms .t-v .sub { display:block; margin-top:3px; font-size:12px; color:#8b93a1; line-height:1.6; }
 
@@ -177,7 +182,8 @@
     table.tbl th, table.tbl td { padding: 8px 9px; text-align: left; border-bottom: 1px solid #f0f1f4; vertical-align: top; }
     table.tbl th { background:#fafbfd; color:#7a8394; font-weight: 700; font-size: 11.5px; white-space: nowrap; }
     table.tbl td { color:#333; line-height:1.55; }
-    table.tbl td:first-child { font-weight: 700; white-space: nowrap; }
+    table.tbl th:first-child, table.tbl td:first-child { width: 96px; }
+    table.tbl td:first-child { font-weight: 700; color:#5a6478; }
     table.tbl tr:last-child td { border-bottom: none; }
 
     .warn-list { list-style: none; }
@@ -205,6 +211,67 @@
     .cta-note { margin-bottom: 12px; font-size: 13.5px; color: #666; text-align: center; line-height: 1.7; }
 
     .footer-note { text-align:center; font-size:12.5px; color:#999; margin-top: 24px; line-height:1.7; }
+
+    /* ── 모바일 ──────────────────────────────────────────────────
+       이 페이지는 카드(24px) 안에 결과카드(18px) 안에 접기(15px)가 겹쳐 있어,
+       360px 화면에서 본문에 남는 폭이 250px도 되지 않는다. 중첩 여백을 걷어내고
+       두 칸 배열은 세로로 쌓는다. */
+    @media (max-width: 480px) {
+      body { padding: 20px 12px 40px; }
+      h1 { font-size: 21px; }
+      .subtitle { font-size: 13.5px; margin-bottom: 20px; }
+
+      .card { padding: 18px 14px; border-radius: 14px; margin-bottom: 16px; }
+      .card h2 { font-size: 15.5px; }
+      .bullets li { font-size: 14px; padding: 6px 0 6px 14px; }
+
+      .res-card { padding: 14px 13px; }
+      .res-bank { font-size: 17.5px; }
+      .res-branch { font-size: 14.5px; }
+      /* 제목 + 꼬리표 + 화살표가 한 줄에 안 들어가면 제목이 눌려 두 줄로 쪼개진다.
+         제목을 온전히 두고 꼬리표를 아랫줄로 내린다. */
+      details.sec > summary { padding: 13px 12px; font-size: 13.5px; flex-wrap: wrap; row-gap: 4px; }
+      details.sec > summary .tag { font-size: 10.5px; padding: 3px 8px; }
+      .sec-body { padding: 0 12px 13px; }
+
+      /* 항목명 62~88px가 값 쪽 폭을 다 먹는다. 이름을 위에 얹고 값에 한 줄을 통째로 준다. */
+      .m-row { flex-direction: column; gap: 1px; padding: 6px 0; }
+      .m-k { width: auto; }
+      .terms .t-row { flex-direction: column; gap: 2px; padding: 10px 0; }
+      .terms .t-k { width: auto; font-size: 12px; }
+      .terms .t-v { font-size: 14px; }
+
+      /* 표를 가로로 두면 스크롤이 생겨 뒤쪽 칸을 못 본다. 행마다 블록으로 쌓는다. */
+      .tbl-wrap { overflow-x: visible; }
+      table.tbl { min-width: 0; display: block; }
+      table.tbl tbody, table.tbl tr, table.tbl td { display: block; width: auto; }
+      table.tbl tr:first-child { display: none; }
+      table.tbl tr { padding: 10px 0; border-bottom: 1px solid #f0f1f4; }
+      table.tbl tr:last-child { border-bottom: none; }
+      table.tbl td { border: none; padding: 0; }
+      table.tbl th:first-child, table.tbl td:first-child { width: auto; }
+      table.tbl td:first-child { font-size: 12px; margin-bottom: 4px; }
+      table.tbl td:last-child { font-size: 13.5px; }
+
+      .docs li { font-size: 13.5px; padding: 9px 0 9px 24px; }
+      .docs li .sub { font-size: 12px; }
+
+      /* 손가락으로 겨냥할 것들은 44px 안팎으로 키운다. */
+      .tel { font-size: 14px; padding: 10px 14px; }
+      .res-cta { padding: 15px; font-size: 15px; }
+      .cta { padding: 16px; }
+
+      .rounds { grid-template-columns: repeat(2, 1fr); }
+      .rounds .d { font-size: 13px; }
+
+      .period-box .v { font-size: 16px; }
+    }
+
+    /* 아주 좁은 화면(약 320px)에서는 격자 한 칸이 74px도 못 버틴다. */
+    @media (max-width: 359px) {
+      .chips { grid-template-columns: repeat(auto-fill, minmax(66px, 1fr)); }
+      .chip { font-size: 13px; padding: 11px 4px; }
+    }
   </style>
 </head>
 <body>
@@ -319,7 +386,7 @@ var BANKS = {
         ["급여소득자", "소득금액증명원 · 근로소득원천징수영수증 · 급여명세서 중 택1 <b>+</b> 재직증명서<br>(건강보험 자격득실상 직장가입자면 재직증명서 생략) · 최근 연말정산 기준 2개년 · 회사발급 서류는 명판·직인 필수"],
         ["개인사업자", "사업자등록증(등록증명원) + 소득금액증명원 2개년<br>(개업 1년 미만이면 기타소득자 기준으로 제출)"],
         ["연금소득자", "연금수급권자확인서 + 연금지급내역서(최근 1개년)<br>(1개월 이상 수급자)"],
-        ["기타소득자<br>(주부·무직)", "사실증명(신고사실없음) <b>+</b> 신용카드 연말정산확인서 또는 건강·장기요양보험료 납부확인서(최근 3개월, 지역세대주만) 중 택1"]
+        ["기타소득자 (주부·무직)", "사실증명(신고사실없음) <b>+</b> 신용카드 연말정산확인서 또는 건강·장기요양보험료 납부확인서(최근 3개월, 지역세대주만) 중 택1"]
       ],
       note: ["모든 서류는 1개월 이내 발급분, 성명·주민등록번호 13자리 모두 표시(마스킹 불가).",
              "외국인은 기본·소득서류 외 외국인등록증, 여권, 외국인등록 사실증명, 국내거소신고증 등이 추가로 필요합니다.",
@@ -353,7 +420,7 @@ var BANKS = {
         ["직장인", "재직증명서 + 최근 2개년 근로소득원천징수영수증<br>취업(복직) 1년 미만은 취업 후 급여명세표 전부 · 휴직자는 휴직 전 1년간 급여명세표 · 회사 직인 필수"],
         ["개인사업자", "사업자등록증 + 소득금액증명원(최근 2개년)<br>개업 1년 미만은 소득신고없음 사실증명서(세무서) + 건강·장기요양보험료 납부확인서(최근 3개월 이상)"],
         ["연금소득자", "연금수급증서 + 연금입금 계좌 거래내역(최근 3개월 이상)"],
-        ["프리랜서<br>(보험모집인 등)", "위촉증명서 + 소득금액증명원(최근 2개년)<br>발급되지 않으면 사업소득 원천징수영수증(연말정산용)"],
+        ["프리랜서 (보험모집인 등)", "위촉증명서 + 소득금액증명원(최근 2개년)<br>발급되지 않으면 사업소득 원천징수영수증(연말정산용)"],
         ["무직자", "세무서 사실증명원(신고사실없음) <b>+</b> 아래 중 택1<br>건강·장기요양보험료 납부확인서(지역세대주) / 국민연금산정용 가입내역 확인서(최근 3개월) / 연말정산용 신용카드 사용금액 확인서(직전연도)"]
       ],
       note: ["모든 서류 필수 제출 · 1개월 이내 발급분 · 주민등록번호가 전부 표시되도록 발급.",
@@ -386,7 +453,7 @@ var BANKS = {
         ["직장인", "재직증명서 및 근로소득원천징수영수증 (최근 2개년)"],
         ["사업자", "사업자등록증 및 소득금액증명원 (최근 2개년)"],
         ["연금소득자", "연금수급권자확인서 및 거래내역 증빙자료"],
-        ["소득이 없는<br>경우", "아래 중 해당 서류<br>국세청 사실증명원(납세신고 사실 없음) / 건강보험자격득실확인서(퇴직·폐업자 또는 직장가입자 피부양자) / 사업자등록증(전년도·당해년도 개업했으나 입증서류 미발급)"]
+        ["소득이 없는 경우", "아래 중 해당 서류<br>국세청 사실증명원(납세신고 사실 없음) / 건강보험자격득실확인서(퇴직·폐업자 또는 직장가입자 피부양자) / 사업자등록증(전년도·당해년도 개업했으나 입증서류 미발급)"]
       ],
       note: ["모든 서류는 1개월 내 발급분입니다.",
              "세대는 세대주 및 세대원(배우자, 직계존속, 직계비속 및 그 배우자, 세대분리된 배우자 포함)으로 구성됩니다."]
@@ -425,7 +492,7 @@ var BANKS = {
         ["직장인", "재직증명서 + 근로소득원천징수영수증(최근 2개년)<br>12개월 미만 재직자는 근무개월분 급여명세표 또는 원천징수확인서 · 회사 명판·직인 필수"],
         ["사업자", "사업자등록증 + 소득금액증명원(최근 2개년)<br>소득발생처 공개여부 ‘여’ 표시 필요 · 신규사업자는 건강·장기요양보험료 납부확인서 추가"],
         ["연금소득자", "연금수급권자확인서 등 지급기관 증명서 + 연금지급내역서(1개년 이상)"],
-        ["소득증명이<br>어려운 경우", "①번 중 택1 <b>+</b> ②번 중 택1<br>① 국세청 사실증명(직전년도 소득신고 없음) / 건강보험 직장가입자의 피부양자 / 사업자등록증명원 / 부부합산소득 2,400만원 이하<br>② 신용카드사용확인서(연말정산 소득공제용) / 건강보험료 납부확인서(최근 3개월)"]
+        ["소득증명이 어려운 경우", "①번 중 택1 <b>+</b> ②번 중 택1<br>① 국세청 사실증명(직전년도 소득신고 없음) / 건강보험 직장가입자의 피부양자 / 사업자등록증명원 / 부부합산소득 2,400만원 이하<br>② 신용카드사용확인서(연말정산 소득공제용) / 건강보험료 납부확인서(최근 3개월)"]
       ],
       note: ["모든 서류 內 기재정보는 <b>마스킹 처리 없이 전체 공개</b>되어야 합니다. · 1개월 이내 발급분.",
              "은행 심사 결과 또는 주택시장 안정화 대책에 따라 추가 서류를 요청할 수 있습니다."]
@@ -459,9 +526,9 @@ var BANKS = {
       income: [
         ["급여소득자", "재직증명서 + 근로소득원천징수영수증(최근 2개년도)<br>재직회사 직인 날인 필수 · 최근 입사자는 급여명세표 전체(직인 날인) + 통장거래내역확인서(은행발급) 추가"],
         ["사업소득자", "사업자등록증(사본) + 소득금액증명원(최근 2개년도)<br>최근 개업 사업자는 건강·장기요양보험료 납부확인서 추가"],
-        ["프리랜서<br>(보험모집인 등)", "위촉계약서 등 + 소득금액증명원(최근 2개년도) 또는 사업소득원천징수영수증(연말정산용)"],
+        ["프리랜서 (보험모집인 등)", "위촉계약서 등 + 소득금액증명원(최근 2개년도) 또는 사업소득원천징수영수증(연말정산용)"],
         ["연금소득자", "연금증서(연금수급권자확인서 등) + 연금수급자료 또는 통장거래내역확인서(최근 2개년도)<br>국민연금·공무원연금·사학연금 등"],
-        ["기타소득자<br>(무소득자)", "국세청(홈택스) 사실증명원 <b>+</b> 아래 중 택1<br>건강·장기요양보험료 납부확인서(지역세대주만 인정) / 국민연금산정용 가입내역 확인서(납부자만 인정) / 2025년도 신용카드 소득공제확인서(체크카드 포함)<br>건강보험자격득실상 ‘직장피부양자’면 사실증명원 생략 가능"]
+        ["기타소득자 (무소득자)", "국세청(홈택스) 사실증명원 <b>+</b> 아래 중 택1<br>건강·장기요양보험료 납부확인서(지역세대주만 인정) / 국민연금산정용 가입내역 확인서(납부자만 인정) / 2025년도 신용카드 소득공제확인서(체크카드 포함)<br>건강보험자격득실상 ‘직장피부양자’면 사실증명원 생략 가능"]
       ],
       note: ["모든 서류는 접수일 기준 1개월 이내 발급분, 성명 및 주민등록번호가 모두 나오도록 발급해 주세요.",
              "대출비용은 본인 명의 농협은행 계좌로 입금해야 하며, 미입금 시 대출 진행이 불가합니다."]
