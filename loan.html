@@ -177,6 +177,13 @@
     .sec-note { margin-top: 12px; font-size: 12px; color:#8b93a1; line-height:1.65;
       padding-top: 10px; border-top: 1px dashed #e8eaee; }
 
+    /* 카드 첫머리에서 "무엇을 준비하는가"를 한 줄로 세운다. .after-box는 꼬리말이라 색이 옅다. */
+    .card-lead { font-size: 14.5px; line-height: 1.7; color:#333; }
+    /* 본문에서 눌러야 하는 주소가 여기 하나뿐이라 버튼을 따로 두지 않고 링크로만 구분한다.
+       긴 주소가 좁은 화면에서 카드를 밀어내지 않도록 끊어 준다. */
+    .ilink { color:#2f6fed; font-weight:700; text-decoration:none; word-break:break-all; }
+    .ilink:hover { text-decoration:underline; }
+
     .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     table.tbl { border-collapse: collapse; width: 100%; min-width: 400px; font-size: 12.5px; }
     table.tbl th, table.tbl td { padding: 8px 9px; text-align: left; border-bottom: 1px solid #f0f1f4; vertical-align: top; }
@@ -224,6 +231,7 @@
       .card { padding: 18px 14px; border-radius: 14px; margin-bottom: 16px; }
       .card h2 { font-size: 15.5px; }
       .bullets li { font-size: 14px; padding: 6px 0 6px 14px; }
+      .card-lead { font-size: 14px; }
 
       .res-card { padding: 14px 13px; }
       .res-bank { font-size: 17.5px; }
@@ -319,6 +327,30 @@
         <p class="picker-hint">브라우저에서 자바스크립트가 꺼져 있어 선택 기능을 쓸 수 없습니다.
           카페 공지글의 은행별 안내문을 확인해 주세요.</p>
       </noscript>
+    </div>
+
+    <div class="card">
+      <h2><span class="badge">3</span>계약금 납부내역 증빙자료 준비</h2>
+      <p class="card-lead">자서 때 1차·2차 계약금을 납부한 사실을 증빙해야 합니다.
+        아래 <b>두 가지를 모두</b> 준비해 주세요.</p>
+
+      <div class="sec-sub">① 아이파크 홈페이지 납부내역</div>
+      <ol class="docs">
+        <li>아이파크 홈페이지 접속 후 회원가입·로그인
+          <span class="sub"><a class="ilink" href="https://www.i-park.com/" target="_blank" rel="noopener">https://www.i-park.com/</a></span></li>
+        <li>MY IPARK → 분양대금 조회</li>
+        <li>동·호수와 1차·2차 계약금 납부내역이 <b>모두 보이도록</b> 화면 캡처</li>
+        <li>캡처한 화면 출력</li>
+      </ol>
+
+      <div class="sec-sub">② 은행 이체내역</div>
+      <ol class="docs">
+        <li>계약금을 이체한 은행계좌 접속</li>
+        <li>1차 계약금 / 2차 계약금 이체내역 조회</li>
+        <li>해당 이체내역 출력</li>
+      </ol>
+
+      <div class="sec-note">※ 은행 및 지점마다 안내가 다를 수 있으니, 대출 진행 은행에 직접 문의해보시는 게 가장 정확합니다.</div>
     </div>
 
     <div class="card">
