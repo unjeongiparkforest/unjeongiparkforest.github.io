@@ -22,12 +22,15 @@
     .sum { margin-top:10px; text-align:center; font-size:15px; color:#444; }
     .sum b { color:#2f6fed; font-size:19px; }
     .grid i { display:inline-block; border-radius:2px; }
-    .blds { margin-top:24px; display:grid; gap:14px 12px;
+    .blds { --mini-grid-height:289px;
+      --mini-grid-height-mobile:202px;
+      margin-top:24px; display:grid; gap:14px 12px;
       grid-template-columns:repeat(auto-fill, minmax(92px, 1fr)); }
     .bld h3 { font-size:12px; font-weight:600; color:#444; display:flex;
       justify-content:space-between; align-items:baseline; margin-bottom:5px; gap:4px; }
     .bld h3 span { font-size:11px; color:#2f6fed; font-weight:700; }
-    .grid { display:flex; flex-direction:column; align-items:center; gap:1px; }
+    .grid { display:flex; flex-direction:column; justify-content:flex-end; align-items:center;
+      height:var(--mini-grid-height); gap:1px; }
     .grid .row { display:flex; justify-content:center; gap:1px; }
     .grid i { width:9px; height:9px; flex:0 0 9px; }
     /* 범례가 없으므로 두 색으로만 읽히게 한다. `state`는 데이터에 그대로 남아 있어
@@ -70,7 +73,7 @@
     #zoom .x { position:absolute; top:10px; right:10px; width:32px; height:32px;
       font-size:16px; background:transparent; }
     #zoom .big { margin-top:16px; display:flex; justify-content:center; }
-    #zoom .big .grid { gap:3px; }
+    #zoom .big .grid { height:auto; justify-content:flex-start; gap:3px; }
     #zoom .big .grid .row { gap:3px; }
     #zoom .big .grid i { border-radius:3px;
       --cw:clamp(10px, calc((min(100vw, 560px) - 80px) / var(--lines) - 3px), 52px);
@@ -92,7 +95,7 @@
       .card { padding:20px 12px 18px; border-radius:12px; }
       .blds { margin-top:18px; grid-template-columns:repeat(auto-fill, minmax(56px, 1fr));
         gap:12px 6px; }
-      .grid { gap:1px; }
+      .grid { height:var(--mini-grid-height-mobile); gap:1px; }
       .grid .row { gap:1px; }
       .grid i { width:6px; height:6px; flex:0 0 6px; border-radius:1px; }
       .bld h3 { font-size:10px; margin-bottom:4px; gap:2px; }
