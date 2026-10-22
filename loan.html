@@ -310,7 +310,7 @@
         <span class="v">2026.10.23부터 은행별 일정까지</span>
       </div>
       <p class="after-box">아래에서 평형과 동을 고르면 담당 지점의 방문예약 버튼이 표시됩니다.
-        수협은행의 일정·장소와 방문예약은 추후 안내 예정입니다.</p>
+        수협은행도 담당 지점별 예약 버튼을 이용해 주세요. 자서 일정·장소는 예약 페이지와 은행 안내문에서 확인해 주세요.</p>
     </section>
 
     <section class="card pick">
@@ -392,7 +392,14 @@ var assignment99 = {
   "206":"nhGeoyeo", "208":"nhYeoksam", "209":"nhYeoksam", "212":"nhYeoksam",
   "221":"nhYeoksam", "222":"nhJamsil", "224":"nhYeoksam"
 };
-var pendingTypes = ["63", "84B", "84C", "171", "192", "197"];
+var suhyupTypes = ["63", "84B", "84C", "171", "192", "197"];
+var SUHYUP_BRANCHES = {
+  sh_garak: {name:"가락동금융센터", seq:"10393"},
+  sh_yangjae: {name:"양재동지점", seq:"10394"},
+  sh_gildong: {name:"길동금융센터", seq:"10395"},
+  sh_ilsan: {name:"일산지점", seq:"10396"},
+  sh_amsa: {name:"암사역지점", seq:"10397"}
+};
 
 var BANKS = {
   "suhyup": {
@@ -863,6 +870,13 @@ function dongsFor(type) {
     return Array.from({length:25}, function (_, i) { return String(201 + i); });
   }
   if (type === "99") { return Object.keys(assignment99); }
+  if (suhyupTypes.indexOf(type) !== -1) {
+    var units = ORIGINAL_UNITS[type] || [];
+    var branchKeys = new Set(units.map(function (entry) { return entry[1]; }).filter(function (key) {
+      return Boolean(SUHYUP_BRANCHES[key]);
+    }));
+    if (branchKeys.size > 1) { return units.map(function (entry) { return entry[0]; }).filter(Boolean); }
+  }
   return [];
 }
 // 최신 담당자·연락처 확인 전까지 문의 정보를 표시하지 않는다.
@@ -933,11 +947,22 @@ function renderResult() {
   }
   hintEl.textContent = "다른 세대를 보시려면 위에서 평형을 다시 선택하세요.";
   var head = type + "㎡" + (dong ? " · " + dong + "동" : "");
-  if (pendingTypes.indexOf(type) !== -1) {
+  if (suhyupTypes.indexOf(type) !== -1) {
     var pending = append(resultEl, "div", "res-card", "");
     append(pending, "div", "res-bank", "수협은행");
+    var unit = (ORIGINAL_UNITS[type] || []).find(function (entry) { return dong ? entry[0] === dong : true; });
+    var suhyupBranch = unit ? SUHYUP_BRANCHES[unit[1]] : null;
+    if (suhyupBranch) { append(pending, "div", "res-branch", suhyupBranch.name); }
     append(pending, "div", "res-when-dong", head);
-    append(pending, "div", "res-warn", "자서 일정·장소 및 방문예약은 추후 안내 예정입니다.");
+    if (suhyupBranch) {
+      append(pending, "div", "res-warn", "자서 일정·장소는 예약 페이지와 수협은행 안내문에서 확인해 주세요.");
+      var reserveLink = append(pending, "a", "res-cta", "수협은행 " + suhyupBranch.name + " 방문예약 →");
+      reserveLink.href = RESERVE + suhyupBranch.seq;
+      reserveLink.target = "_blank";
+      reserveLink.rel = "noopener noreferrer";
+    } else {
+      append(pending, "div", "res-warn", "이 타입의 수협은행 담당 지점은 아직 확인되지 않았습니다. 담당 지점 확인 후 예약해 주세요.");
+    }
     addTypeContacts(pending, type, "suhyup");
     addPreparation(pending, "수협은행");
     return;
