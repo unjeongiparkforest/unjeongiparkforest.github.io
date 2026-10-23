@@ -394,11 +394,11 @@ var assignment99 = {
 };
 var suhyupTypes = ["63", "84B", "84C", "171", "192", "197"];
 var SUHYUP_BRANCHES = {
-  sh_garak: {name:"가락동금융센터", seq:"10393"},
-  sh_yangjae: {name:"양재동지점", seq:"10394"},
-  sh_gildong: {name:"길동금융센터", seq:"10395"},
-  sh_ilsan: {name:"일산지점", seq:"10396"},
-  sh_amsa: {name:"암사역지점", seq:"10397"}
+  sh_garak: {name:"가락금융센터", period:"2026.10.28~11.10", seq:"10393"},
+  sh_yangjae: {name:"양재지점", period:"2026.10.28~11.10", seq:"10394"},
+  sh_gildong: {name:"길동금융센터", period:"2026.10.28~11.10", seq:"10395"},
+  sh_ilsan: {name:"일산지점", period:"2026.10.28~11.10", seq:"10396"},
+  sh_amsa: {name:"암사지점", period:"2026.10.28~11.06", seq:"10397"}
 };
 
 var BANKS = {
@@ -827,10 +827,11 @@ function docsBody(bank) {
 
 var RESERVE = "https://www.i-park.com/reserveVisit/reservation?buildingSeq=14470&seq=";
 var typeOrder = ["63","74","84A","84B","84C","99","113","152","171","192","197"];
-var ORIGINAL_UNITS = {"63":[["204","sh_ilsan"],["205","sh_gildong"],["211","sh_gildong"],["220","sh_gildong"]],"74":[["206","woori_kim"],["207","woori_kim"],["208","woori_seong"],["217","woori_park4"],["218","woori_park3"],["219","woori_seong"]],"99":[["206","nh_geoyeo"],["208","nh_yeoksam"],["209","nh_yeoksam"],["212","nh_yeoksam"],["221","nh_yeoksam"],["222","nh_jamsil"],["224","nh_yeoksam"]],"113":[["","kb_gyoha"]],"152":[["211","woori_park4"]],"171":[["212","sh_ilsan"],["221","sh_ilsan"],["224","sh_ilsan"]],"192":[["","woori_unknown"]],"197":[["210","sh_ilsan"],["213","sh_ilsan"]],"84A":[["202","hana_unjeong"],["203","hana_unjeong"],["204","hana_unjeong"],["205","hana_unjeong"],["207","hana_unjeong","19층까지"],["207","hana_paju","20층부터"],["208","hana_paju"],["209","hana_paju"],["210","kb_gyoha"],["211","kb_gyoha"],["212","kb_gyoha"],["213","nh_unknown"],["214","nh_yeoksam"],["215","nh_jamsil"],["216","nh_geoyeo"],["217","hana_paju"],["218","hana_paju"],["219","hana_paju"],["220","hana_unknown"],["221","hana_unknown"],["222","hana_gyoha"],["223","hana_gyoha"],["224","hana_gyoha"],["225","hana_gyoha"]],"84B":[["202","sh_yangjae"],["204","sh_garak"],["205","sh_garak"],["206","sh_amsa"],["210","sh_garak"],["211","sh_yangjae"],["212","sh_gildong"],["213","sh_garak"],["215","sh_yangjae"],["216","sh_yangjae"],["219","sh_amsa"],["224","sh_amsa"]],"84C":[["203","sh_garak"],["207","sh_yangjae"],["208","sh_garak"],["209","sh_ilsan"],["214","sh_yangjae"],["217","sh_yangjae"],["218","sh_amsa"],["222","sh_amsa"],["223","sh_amsa"],["225","sh_ilsan"]]};
+var ORIGINAL_UNITS = {"63":[["204","sh_ilsan"],["205","sh_gildong"],["211","sh_gildong"],["220","sh_gildong"]],"74":[["206","woori_kim"],["207","woori_kim"],["208","woori_seong"],["217","woori_park4"],["218","woori_park3"],["219","woori_seong"]],"99":[["206","nh_geoyeo"],["208","nh_yeoksam"],["209","nh_yeoksam"],["212","nh_yeoksam"],["221","nh_yeoksam"],["222","nh_jamsil"],["224","nh_yeoksam"]],"113":[["","kb_gyoha"]],"152":[["211","woori_park4"]],"171":[["","sh_ilsan"]],"192":[["","woori_unknown"]],"197":[["","sh_ilsan"]],"84A":[["202","hana_unjeong"],["203","hana_unjeong"],["204","hana_unjeong"],["205","hana_unjeong"],["207","hana_unjeong","19층까지"],["207","hana_paju","20층부터"],["208","hana_paju"],["209","hana_paju"],["210","kb_gyoha"],["211","kb_gyoha"],["212","kb_gyoha"],["213","nh_unknown"],["214","nh_yeoksam"],["215","nh_jamsil"],["216","nh_geoyeo"],["217","hana_paju"],["218","hana_paju"],["219","hana_paju"],["220","hana_unknown"],["221","hana_unknown"],["222","hana_gyoha"],["223","hana_gyoha"],["224","hana_gyoha"],["225","hana_gyoha"]],"84B":[["202","sh_yangjae"],["204","sh_garak"],["205","sh_garak"],["206","sh_amsa"],["207","sh_yangjae"],["210","sh_garak"],["211","sh_yangjae"],["212","sh_gildong"],["213","sh_garak"],["214","sh_yangjae"],["215","sh_yangjae"],["216","sh_yangjae"],["217","sh_yangjae"],["219","sh_gildong"],["224","sh_amsa"]],"84C":[["203","sh_garak"],["207","sh_gildong"],["208","sh_garak"],["209","sh_ilsan"],["218","sh_amsa"],["222","sh_amsa"],["223","sh_amsa"],["225","sh_ilsan"]]};
 var CONTACTS = {"sh_gildong":{"bank":"suhyup","staff":"김성운 대리","tels":[["","02-485-6022"]]},"sh_garak":{"bank":"suhyup","staff":"이지훈 대리","tels":[["","02-6425-0961"]]},"sh_amsa":{"bank":"suhyup","staff":"박성미 대리","tels":[["","02-442-1981"]]},"sh_yangjae":{"bank":"suhyup","staff":"박수정 대리","tels":[["","02-571-8077"]]},"sh_ilsan":{"bank":"suhyup","staff":"우성호 대리","tels":[["","031-901-5347"]]},"hana_unjeong":{"bank":"hana","staff":"","tels":[["","031-8071-3100"]]},"hana_paju":{"bank":"hana","staff":"","tels":[["","031-957-3741"]]},"hana_gyoha":{"bank":"hana","staff":"","tels":[["","031-948-1111"]]},"hana_unknown":{"bank":"hana","staff":"","tels":[]},"woori_kim":{"bank":"woori","staff":"김대헌 차장 (내선 310)","tels":[["","031-914-4271"]]},"woori_seong":{"bank":"woori","staff":"성대형 부지점장 (내선 312)","tels":[["","031-914-4271"]]},"woori_park3":{"bank":"woori","staff":"박세현 계장 (내선 313)","tels":[["","031-914-4271"]]},"woori_park4":{"bank":"woori","staff":"박경윤 대리 (내선 314)","tels":[["","031-914-4271"]]},"woori_unknown":{"bank":"woori","staff":"","tels":[["","031-914-4271"]]},"kb_gyoha":{"bank":"kb","staff":"김선주 팀장 / 엄재영 팀장","tels":[["","031-942-9650"],["","031-942-9651"],["","031-942-9652"],["","031-942-9653"],["","031-942-9654"]]},"nh_yeoksam":{"bank":"nh","staff":"","tels":[["김보미 팀장","02-2187-2513"],["신선주 과장","02-2187-2530"],["이요섭 계장","02-2187-2528"]]},"nh_geoyeo":{"bank":"nh","staff":"","tels":[["이정은 팀장","02-2240-7146"],["예지훈 과장","02-2240-7151"],["조준혁 계장","02-2240-7145"]]},"nh_jamsil":{"bank":"nh","staff":"","tels":[["박정훈 팀장","02-3418-3563"],["권정무 과장","02-3418-3565"],["김종훈 과장","02-3418-3568"]]},"nh_unknown":{"bank":"nh","staff":"","tels":[]}};
 var CENTERS = {"suhyup":[["고객지원센터","1588-1515"]],"hana":[["고객센터","1599-2222"]],"woori":[],"kb":[["고객센터","1588-9999"]],"nh":[["고객행복센터","1661-3000"],["고객행복센터","1522-3000"]]};
 var state = {type:null, dong:null};
+function typeLabel(type) { return (type === "171" || type === "197") ? type + "P" : type + "㎡"; }
 var typeChips = document.getElementById("typeChips");
 var dongChips = document.getElementById("dongChips");
 var dongStep = document.getElementById("dongStep");
@@ -942,11 +943,11 @@ function renderResult() {
   resultEl.replaceChildren();
   resultEl.hidden = !type || (dongsFor(type).length > 0 && !dong);
   if (resultEl.hidden) {
-    hintEl.textContent = type ? type + "㎡ 세대의 동을 선택해 주세요." : "평형을 먼저 선택해 주세요.";
+    hintEl.textContent = type ? typeLabel(type) + " 세대의 동을 선택해 주세요." : "평형을 먼저 선택해 주세요.";
     return;
   }
   hintEl.textContent = "다른 세대를 보시려면 위에서 평형을 다시 선택하세요.";
-  var head = type + "㎡" + (dong ? " · " + dong + "동" : "");
+  var head = typeLabel(type) + (dong ? " · " + dong + "동" : "");
   if (suhyupTypes.indexOf(type) !== -1) {
     var pending = append(resultEl, "div", "res-card", "");
     append(pending, "div", "res-bank", "수협은행");
@@ -955,7 +956,10 @@ function renderResult() {
     if (suhyupBranch) { append(pending, "div", "res-branch", suhyupBranch.name); }
     append(pending, "div", "res-when-dong", head);
     if (suhyupBranch) {
-      append(pending, "div", "res-warn", "자서 일정·장소는 예약 페이지와 수협은행 안내문에서 확인해 주세요.");
+      var meta = append(pending, "div", "res-meta", "");
+      metaRow(meta, "자서기간", suhyupBranch.period);
+      metaRow(meta, "자서장소", "수협은행 " + suhyupBranch.name);
+      metaRow(meta, "방문예약", "2026.10.23부터 해당 지점 일정까지");
       var reserveLink = append(pending, "a", "res-cta", "수협은행 " + suhyupBranch.name + " 방문예약 →");
       reserveLink.href = RESERVE + suhyupBranch.seq;
       reserveLink.target = "_blank";
@@ -1012,7 +1016,7 @@ function renderResult() {
   });
 }
 typeOrder.forEach(function (type) {
-  var button = append(typeChips, "button", "chip", type + "㎡");
+  var button = append(typeChips, "button", "chip", typeLabel(type));
   button.type = "button";
   button.setAttribute("data-type", type);
   button.setAttribute("aria-pressed", "false");
