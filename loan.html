@@ -373,9 +373,9 @@
 // 이번 공지에 명시된 지점·일정만 사용한다.
 var branches = {
   kb: ["국민은행 · 교하지점", "2026.10.28~11.03", "10390"],
-  hanaGyoha: ["하나은행 · 교하지점", "2026.11.02~11.06", "10387"],
-  hanaPaju: ["하나은행 · 파주지점", "2026.11.02~11.06", "10388"],
-  hanaUnjeong: ["하나은행 · 운정지점", "2026.11.02~11.06", "10389"],
+  hanaGyoha: ["하나은행 · 교하지점", "2026.11.02~11.06 / 11.09~11.11", "10387"],
+  hanaPaju: ["하나은행 · 파주지점", "2026.11.02~11.06 / 11.09~11.11", "10388"],
+  hanaUnjeong: ["하나은행 · 운정지점", "2026.11.02~11.06 / 11.09~11.11", "10389"],
   nhYeoksam: ["농협은행 · 역삼금융센터", "2026.11.09~11.10", "10384"],
   nhGeoyeo: ["농협은행 · 거여역지점", "2026.11.09", "10385"],
   nhJamsil: ["농협은행 · 잠실지점", "2026.11.10", "10386"],
@@ -490,9 +490,10 @@ var BANKS = {
   "hana": {
     "name": "하나은행",
     "prep": [
-      "방문 전 비대면 계좌개설과 <b>하나원큐</b> 가입을 마쳐주세요.",
-      "계좌개설 시 영업점 선택란에 <b>담당 지점</b>(운정·파주·교하)을 입력해야 합니다.",
-      "중도금대출 신청은 모바일뱅킹으로 진행됩니다. 공동명의는 모두 방문해 작성해야 합니다."
+      "<b>2026.10.30까지</b> 본인 명의 하나은행 입출금계좌를 개설하고 <b>하나원큐</b>에 가입해 주세요. 공동명의자는 각자 계좌를 개설해야 합니다.",
+      "계좌 개설 시 담당 영업점(운정·파주·교하)을 선택해 주세요. 계좌 개설이 어려우면 가까운 하나은행 영업점을 방문해 개설할 수 있습니다.",
+      "대출은 서면 접수와 모바일뱅킹으로 진행됩니다. 공동명의 또는 1·2회차 동시 취급 세대는 모바일 신청이 불가해 명의자 전원이 방문해 서류를 작성해야 합니다.",
+      "2회차 대출 실행 전 <b>신용거래 안심차단 서비스를 해제</b>해야 합니다. 미해제 시 대출이 불가할 수 있습니다."
     ],
     "docs": {
       "visit": [
@@ -526,7 +527,7 @@ var BANKS = {
         ],
         [
           "기본증명서 상세(전세대 주민등록번호 필수)",
-          "미성년 자녀가 있는 세대 대상, 84A 201~209동, 217~225동"
+          "미성년 자녀가 있으면 자녀별 기준으로 발급"
         ],
         [
           "소득증빙자료",
@@ -536,7 +537,7 @@ var BANKS = {
       "income": [
         [
           "직장인",
-          "재직증명서 + 최근 2개년 근로소득원천징수영수증<br>취업(복직) 1년 미만은 취업 후 급여명세표 전부 · 휴직자는 휴직 전 1년간 급여명세표 · 회사 직인 필수"
+          "재직증명서 + 최근 2개년 소득금액증명원<br>취업(복직) 1년 미만은 취업(복직) 후 급여명세표 전부 · 휴직자는 휴직 전 1년간 급여명세표 · 회사 직인 필수"
         ],
         [
           "개인사업자",
@@ -556,7 +557,7 @@ var BANKS = {
         ]
       ],
       "note": [
-        "모든 서류 필수 제출 · 1개월 이내 발급분 · 주민등록번호가 전부 표시되도록 발급."
+        "모든 서류 필수 제출 · 1개월 이내 발급분 · 주민등록번호 전체 표시. 공동명의는 명의자 전원이 각자 서류를 준비해 함께 방문해야 합니다."
       ]
     }
   },
@@ -829,6 +830,11 @@ var RESERVE = "https://www.i-park.com/reserveVisit/reservation?buildingSeq=14470
 var typeOrder = ["63","74","84A","84B","84C","99","113","152","171","192","197"];
 var ORIGINAL_UNITS = {"63":[["204","sh_ilsan"],["205","sh_gildong"],["211","sh_gildong"],["220","sh_gildong"]],"74":[["206","woori_kim"],["207","woori_kim"],["208","woori_seong"],["217","woori_park4"],["218","woori_park3"],["219","woori_seong"]],"99":[["206","nh_geoyeo"],["208","nh_yeoksam"],["209","nh_yeoksam"],["212","nh_yeoksam"],["221","nh_yeoksam"],["222","nh_jamsil"],["224","nh_yeoksam"]],"113":[["","kb_gyoha"]],"152":[["211","woori_park4"]],"171":[["","sh_ilsan"]],"192":[["","woori_unknown"]],"197":[["","sh_ilsan"]],"84A":[["202","hana_unjeong"],["203","hana_unjeong"],["204","hana_unjeong"],["205","hana_unjeong"],["207","hana_unjeong","19층까지"],["207","hana_paju","20층부터"],["208","hana_paju"],["209","hana_paju"],["210","kb_gyoha"],["211","kb_gyoha"],["212","kb_gyoha"],["213","nh_unknown"],["214","nh_yeoksam"],["215","nh_jamsil"],["216","nh_geoyeo"],["217","hana_paju"],["218","hana_paju"],["219","hana_paju"],["220","hana_unknown"],["221","hana_unknown"],["222","hana_gyoha"],["223","hana_gyoha"],["224","hana_gyoha"],["225","hana_gyoha"]],"84B":[["202","sh_yangjae"],["204","sh_garak"],["205","sh_garak"],["206","sh_amsa"],["207","sh_yangjae"],["210","sh_garak"],["211","sh_yangjae"],["212","sh_gildong"],["213","sh_garak"],["214","sh_yangjae"],["215","sh_yangjae"],["216","sh_yangjae"],["217","sh_yangjae"],["219","sh_gildong"],["224","sh_amsa"]],"84C":[["203","sh_garak"],["207","sh_gildong"],["208","sh_garak"],["209","sh_ilsan"],["218","sh_amsa"],["222","sh_amsa"],["223","sh_amsa"],["225","sh_ilsan"]]};
 var CONTACTS = {"sh_gildong":{"bank":"suhyup","staff":"김성운 대리","tels":[["","02-485-6022"]]},"sh_garak":{"bank":"suhyup","staff":"이지훈 대리","tels":[["","02-6425-0961"]]},"sh_amsa":{"bank":"suhyup","staff":"박성미 대리","tels":[["","02-442-1981"]]},"sh_yangjae":{"bank":"suhyup","staff":"박수정 대리","tels":[["","02-571-8077"]]},"sh_ilsan":{"bank":"suhyup","staff":"우성호 대리","tels":[["","031-901-5347"]]},"hana_unjeong":{"bank":"hana","staff":"","tels":[["","031-8071-3100"]]},"hana_paju":{"bank":"hana","staff":"","tels":[["","031-957-3741"]]},"hana_gyoha":{"bank":"hana","staff":"","tels":[["","031-948-1111"]]},"hana_unknown":{"bank":"hana","staff":"","tels":[]},"woori_kim":{"bank":"woori","staff":"김대헌 차장 (내선 310)","tels":[["","031-914-4271"]]},"woori_seong":{"bank":"woori","staff":"성대형 부지점장 (내선 312)","tels":[["","031-914-4271"]]},"woori_park3":{"bank":"woori","staff":"박세현 계장 (내선 313)","tels":[["","031-914-4271"]]},"woori_park4":{"bank":"woori","staff":"박경윤 대리 (내선 314)","tels":[["","031-914-4271"]]},"woori_unknown":{"bank":"woori","staff":"","tels":[["","031-914-4271"]]},"kb_gyoha":{"bank":"kb","staff":"김선주 팀장 / 엄재영 팀장","tels":[["","031-942-9650"],["","031-942-9651"],["","031-942-9652"],["","031-942-9653"],["","031-942-9654"]]},"nh_yeoksam":{"bank":"nh","staff":"","tels":[["김보미 팀장","02-2187-2513"],["신선주 과장","02-2187-2530"],["이요섭 계장","02-2187-2528"]]},"nh_geoyeo":{"bank":"nh","staff":"","tels":[["이정은 팀장","02-2240-7146"],["예지훈 과장","02-2240-7151"],["조준혁 계장","02-2240-7145"]]},"nh_jamsil":{"bank":"nh","staff":"","tels":[["박정훈 팀장","02-3418-3563"],["권정무 과장","02-3418-3565"],["김종훈 과장","02-3418-3568"]]},"nh_unknown":{"bank":"nh","staff":"","tels":[]}};
+var HANA_CONTACTS = {
+  hana_unjeong: {phone:"031-8071-3100", fax:"031-8071-3106", staff:["황인영 부장 (내선 201)", "성혜진 대리 (내선 107)", "김은애 차장 (내선 110)"]},
+  hana_paju: {phone:"031-957-3741", fax:"031-957-1833", staff:["박력 차장 (내선 204)", "김동원 대리 (내선 108)", "유정은 계장 (내선 109)"]},
+  hana_gyoha: {phone:"031-948-1111", fax:"031-948-3872", staff:["최성현 부장 (내선 324)", "배주연 과장 (내선 301)", "김슬기 대리 (내선 309)"]}
+};
 var CENTERS = {"suhyup":[["고객지원센터","1588-1515"]],"hana":[["고객센터","1599-2222"]],"woori":[],"kb":[["고객센터","1588-9999"]],"nh":[["고객행복센터","1661-3000"],["고객행복센터","1522-3000"]]};
 var state = {type:null, dong:null};
 function typeLabel(type) { return (type === "171" || type === "197") ? type + "P" : type + "㎡"; }
@@ -865,6 +871,58 @@ function addPreparation(parent, bankName) {
   append(summary, "span", "tag src", bank.name + " 기준");
   var documentsBody = append(documents, "div", "sec-body", "");
   documentsBody.innerHTML = docsBody(bank);
+}
+function addHanaContact(parent, branchKey) {
+  var contact = HANA_CONTACTS[branchKey];
+  if (!contact) { return; }
+  var section = append(parent, "div", "res-tels", "");
+  var phone = append(section, "a", "tel", "☎ " + contact.phone);
+  phone.href = "tel:" + contact.phone.replace(/\D/g, "");
+  append(parent, "div", "res-when-dong", "팩스 " + contact.fax);
+  contact.staff.forEach(function (staff) {
+    append(parent, "div", "res-when-dong", staff);
+  });
+}
+function addHanaBranchContacts(parent) {
+  var branchNames = {hana_unjeong:"운정", hana_paju:"파주", hana_gyoha:"교하"};
+  ["hana_unjeong", "hana_paju", "hana_gyoha"].forEach(function (key) {
+    var contact = HANA_CONTACTS[key];
+    var link = append(parent, "a", "tel", branchNames[key] + "지점 · ☎ " + contact.phone);
+    link.href = "tel:" + contact.phone.replace(/\D/g, "");
+  });
+  append(parent, "div", "sec-note", "동별 담당 지점을 안내문에서 찾지 못한 경우 각 지점에 확인해 주세요.");
+}
+function addHanaTerms(parent) {
+  var section = append(parent, "details", "sec", "");
+  append(section, "summary", "", "하나은행 대출 조건·금리");
+  var body = append(section, "div", "sec-body terms", "");
+  body.innerHTML =
+    '<div class="t-row"><div class="t-k">대출한도</div><div class="t-v">분양금액의 최대 60% (보증기관 보증한도 내)</div></div>' +
+    '<div class="t-row"><div class="t-k">금리</div><div class="t-v"><b>연 4.98%</b><span class="sub">2026.10.19 기준 · 신규취급액 COFIX 6개월 변동 3.43% + 가산금리 1.55%. 회차별 실행일 기준 금리로 확정되고 6개월마다 변동됩니다.</span></div></div>' +
+    '<div class="t-row"><div class="t-k">대출기간</div><div class="t-v">2029.03.30까지 (HUG 보증서 만기 이내)</div></div>' +
+    '<div class="t-row"><div class="t-k">이자·상환</div><div class="t-v">입주 전 이자는 후불로 시행사가 우선 부담한 뒤 입주 시 세대별 정산하며, 입주지정일 이후 이자는 계약자가 납부합니다. 만기일시상환이며 중도상환수수료는 면제됩니다. 단, 타 은행 대환 목적 상환은 0.59%가 적용될 수 있습니다.</div></div>' +
+    '<div class="t-row"><div class="t-k">보증료</div><div class="t-v">HUG 보증료 연 0.13% (조합원 0.15%), 할인 대상·요건은 별도 확인</div></div>' +
+    '<div class="t-row"><div class="t-k">인지세</div><div class="t-v">5천만원 초과~1억원 이하 35,000원 · 1억원 초과~10억원 이하 75,000원 · 10억원 초과 175,000원</div></div>' +
+    '<p class="sec-note">금리인하요구권 비대상 상품입니다. 금리와 수수료는 실행 시점 및 개인별 조건에 따라 달라질 수 있습니다. 은행 안내문 기준일은 2026.10.19입니다.</p>';
+  var schedule = append(parent, "details", "sec", "");
+  append(schedule, "summary", "", "하나은행 접수 일정·준비 기한");
+  var scheduleBody = append(schedule, "div", "sec-body terms", "");
+  scheduleBody.innerHTML =
+    '<div class="t-row"><div class="t-k">접수 일정 ①</div><div class="t-v"><b>2026.11.02~11.06 · 09:00~15:00</b><span class="sub">6월 7일 이후 계약 세대 또는 6월 7일 이전 계약 세대 중 1회차 미납 세대</span></div></div>' +
+    '<div class="t-row"><div class="t-k">접수 일정 ②</div><div class="t-v"><b>2026.11.09~11.11 · 09:00~15:00</b><span class="sub">6월 7일 이전 계약 세대 중 1회차 자납 세대 또는 2회차부터 대출이 필요한 세대</span></div></div>' +
+    '<div class="t-row"><div class="t-k">접수 장소</div><div class="t-v">배정된 하나은행 지점 방문 · 시행사 사이트에서 방문 시간 예약</div></div>' +
+    '<div class="t-row"><div class="t-k">계좌·앱</div><div class="t-v">2026.10.30까지 본인 명의 계좌 개설, 하나원큐 가입 및 서류 준비</div></div>' +
+    '<div class="t-row"><div class="t-k">안심차단</div><div class="t-v">신용거래 안심차단 서비스를 2026.11.27까지 해제</div></div>' +
+    '<div class="t-row"><div class="t-k">비용 납부</div><div class="t-v">보증료·인지세는 본인 명의 계좌에서 납부 · 평형·기준층별 보증료는 2026.12.04까지</div></div>' +
+    '<div class="sec-sub">중도금 회차별 실행일</div>' +
+    '<div class="rounds">' +
+    '<div><span class="n">1회차</span><span class="d">2026.09.28</span></div>' +
+    '<div><span class="n">2회차</span><span class="d">2026.12.07</span></div>' +
+    '<div><span class="n">3회차</span><span class="d">2027.05.07</span></div>' +
+    '<div><span class="n">4회차</span><span class="d">2027.09.07</span></div>' +
+    '<div><span class="n">5회차</span><span class="d">2027.12.07</span></div>' +
+    '<div><span class="n">6회차</span><span class="d">2028.06.07</span></div>' +
+    '</div>';
 }
 function dongsFor(type) {
   if (type === "84A") {
@@ -982,7 +1040,10 @@ function renderResult() {
     append(unknown, "div", "res-warn", hanaMissing ?
       "하나은행 서류 안내 대상 범위에 포함되지만 자서 일정의 지점별 목록에는 없습니다. 은행 안내문 또는 담당 은행에 확인해 주세요." :
       "이번 공지 문자에 해당 동·타입의 배정이 없습니다. 은행 안내문 또는 담당 은행에 확인해 주세요.");
-    if (hanaMissing) { addPreparation(unknown, "하나은행"); }
+    if (hanaMissing) {
+      addHanaBranchContacts(unknown);
+      addPreparation(unknown, "하나은행");
+    }
     return;
   }
   keys.forEach(function (key, index) {
@@ -995,7 +1056,9 @@ function renderResult() {
     var bankKey = {"국민은행":"kb","하나은행":"hana","농협은행":"nh","우리은행":"woori"}[names[0]];
     var contactKey = {kb:"kb_gyoha",hanaUnjeong:"hana_unjeong",hanaPaju:"hana_paju",hanaGyoha:"hana_gyoha",
       nhYeoksam:"nh_yeoksam",nhGeoyeo:"nh_geoyeo",nhJamsil:"nh_jamsil"}[key];
-    if (key === "woori") {
+    if (bankKey === "hana") {
+      addHanaContact(card, contactKey);
+    } else if (key === "woori") {
       addTypeContacts(card, type, bankKey);
     } else {
       addContacts(card, bankKey, contactKey);
@@ -1012,6 +1075,7 @@ function renderResult() {
     } else {
       append(card, "div", "res-warn", "사전 예약 없이 우리은행 탄현지점으로 방문해 주세요.");
     }
+    if (bankKey === "hana") { addHanaTerms(card); }
     addPreparation(card, names[0]);
   });
 }
